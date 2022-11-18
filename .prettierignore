@@ -1,0 +1,9 @@
+# Ignore artifacts:
+build
+coverage
+.circleci
+.next
+.vscode
+node_modules
+*.yml
+*.json
