@@ -1,27 +1,59 @@
 {
   "name": "fpl_cra",
   "version": "0.1.0",
+  "description": "FPL data webapp front end",
+  "author": "Michael Cockcroft",
+  "license": "MIT",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.7.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "graphql": "^16.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
+    "react-spinners": "^0.13.6",
+    "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.7.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint ."
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "react-app/jest",
+      "airbnb",
+      "prettier"
+    ],
+    "rules": {
+      "import/prefer-default-export": "off",
+      "react/function-component-definition": [
+        0,
+        {
+          "namedComponents": "arrow-function",
+          "unnamedComponents": "arrow-function"
+        }
+      ],
+      "react/jsx-filename-extension": "off",
+      "react/prop-types": 0,
+      "react/react-in-jsx-scope": 0,
+      "arrow-body-style": 0,
+      "camelcase": 0,
+      "consistent-return": 1
+    }
   },
   "browserslist": {
     "production": [
