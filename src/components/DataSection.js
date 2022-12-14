@@ -41,10 +41,7 @@ export const DataSection = () => {
   } = useQuery(EVENT_STATUS_QUERY);
 
   if (loading || gwStatusLoading) return <Loader />;
-  if (error || gwStatusError) {
-    // console.log(error);
-    return "Error loading teamData.";
-  }
+  if (error || gwStatusError) return "Error loading teamData.";
 
   const { allTeams } = data;
   const gw = gwStatusData.eventStatus.status[0].event;

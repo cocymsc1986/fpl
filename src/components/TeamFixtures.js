@@ -57,10 +57,7 @@ export const TeamFixtures = ({ id }) => {
   });
 
   if (teamsLoading || fixturesLoading) return <Loader />;
-  if (teamsError || fixturesError) {
-    // console.log(teamsError, fixturesError);
-    return "Error loading team fixtures.";
-  }
+  if (teamsError || fixturesError) return "Error loading team fixtures.";
 
   const {
     getTeamsFixtures: { fixtures },

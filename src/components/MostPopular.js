@@ -42,7 +42,6 @@ export const MostPopular = ({ stat }) => {
   }
 
   if (error) {
-    // console.log(error);
     return "Error loading most popular players.";
   }
 

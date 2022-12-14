@@ -65,14 +65,9 @@ export const UpcomingFixtures = ({ teamData }) => {
 
   const { teams } = teamData;
 
-  if (loading || !teams) {
-    return <Loader />;
-  }
+  if (loading || !teams) return <Loader />;
 
-  if (error) {
-    // console.log(error);
-    return `Error loading fixtures.`;
-  }
+  if (error) return `Error loading fixtures.`;
 
   const buttonText =
     difficultyType === "easiest" ? "Show Hardest" : "Show Easiest";

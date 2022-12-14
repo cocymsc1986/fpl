@@ -59,10 +59,7 @@ export const PlayerInfo = ({ id }) => {
   });
 
   if (loading) return <Loader />;
-  if (error) {
-    // console.log(error);
-    return "Error loading player.";
-  }
+  if (error) return "Error loading player.";
 
   const { player } = data;
 

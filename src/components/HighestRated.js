@@ -33,10 +33,7 @@ export const HighestRated = ({ position, teams }) => {
   );
 
   if (loading) return <Loader />;
-  if (error) {
-    // console.log(error);
-    return `Error loading highest rated ${position}s.`;
-  }
+  if (error) return `Error loading highest rated ${position}s.`;
 
   const getTeamName = (id) => {
     return teams.find((team) => team.id === id).short_name;

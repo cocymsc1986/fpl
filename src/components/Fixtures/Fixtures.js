@@ -46,10 +46,7 @@ export const Fixtures = ({ teamData, gw }) => {
   };
 
   if (loading) return <Loader />;
-  if (error) {
-    // console.log(error);
-    return `Error loading fixtures.`;
-  }
+  if (error) return `Error loading fixtures.`;
 
   const getKOTime = (date) => {
     const convertedDate = new Date(date);

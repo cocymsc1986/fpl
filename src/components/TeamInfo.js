@@ -56,10 +56,7 @@ export const TeamInfo = ({ id }) => {
   });
 
   if (teamLoading || playersLoading) return <Loader />;
-  if (teamError || playersError) {
-    // console.log(error);
-    return "Error loading team data.";
-  }
+  if (teamError || playersError) return "Error loading team data.";
 
   const { team } = teamData;
   const { playersByTeam } = playersData;
