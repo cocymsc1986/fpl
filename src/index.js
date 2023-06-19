@@ -42,7 +42,11 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+<<<<<<< HEAD
 const root = ReactDOM.createRoot(document.getElementById('root'));
+=======
+const root = ReactDOM.createRoot(document.getElementById("root"));
+>>>>>>> eb657ebdc434220ff3e91059d70050527ecd237b
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>

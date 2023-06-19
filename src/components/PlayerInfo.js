@@ -259,7 +259,11 @@ const HeaderInfo = styled.div`
 
   p {
     margin: 0;
+<<<<<<< HEAD
   }
+=======
+  };
+>>>>>>> eb657ebdc434220ff3e91059d70050527ecd237b
 `;
 
 const HeaderValues = styled.span`
@@ -277,7 +281,11 @@ const StyledLink = styled(Link)`
   @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
     height: 100px;
     width: 100px;
+<<<<<<< HEAD
   }
+=======
+  };
+>>>>>>> eb657ebdc434220ff3e91059d70050527ecd237b
 `;
 
 const Body = styled.div`
