@@ -1,7 +1,7 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
-import styled from 'styled-components/macro';
-import { Link } from 'react-router-dom';
+import styled from "styled-components/macro";
+import { Link } from "react-router-dom";
 
 import { TeamFixtures } from "./TeamFixtures";
 import { Loader } from "./Loader";
@@ -108,7 +108,7 @@ export const PlayerInfo = ({ id }) => {
       <Header>
         <HeaderContainer>
           <img
-            src={`https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p${code}.png`}
+            src={`https://resources.premierleague.com/premierleague/photos/players/110x140/p${code}.png`}
             alt={web_name}
             width="220"
             height="280"
@@ -119,39 +119,30 @@ export const PlayerInfo = ({ id }) => {
               {first_name} {second_name}
             </h2>
             <p>
-              Points:{" "}
-              <HeaderValues>{total_points}</HeaderValues>
+              Points: <HeaderValues>{total_points}</HeaderValues>
             </p>
             {(keeper || defence) && (
               <p>
-                Clean sheets:{" "}
-                <HeaderValues>{clean_sheets}</HeaderValues>
+                Clean sheets: <HeaderValues>{clean_sheets}</HeaderValues>
               </p>
             )}
             {keeper && (
               <p>
-                Penalties saved:{" "}
-                <HeaderValues>
-                  {penalties_saved}
-                </HeaderValues>
+                Penalties saved: <HeaderValues>{penalties_saved}</HeaderValues>
               </p>
             )}
             {!keeper && (
               <>
                 <p>
-                  Goals:{" "}
-                  <HeaderValues>
-                    {goals_scored}
-                  </HeaderValues>
+                  Goals: <HeaderValues>{goals_scored}</HeaderValues>
                 </p>
                 <p>
-                  Assists:{" "}
-                  <HeaderValues>{assists}</HeaderValues>
+                  Assists: <HeaderValues>{assists}</HeaderValues>
                 </p>
               </>
             )}
             <StyledLink to={`/team/${team}`}>
-              <img
+              <StyledTeamLogo
                 src={`https://resources.premierleague.com/premierleague/badges/t${team_code}.svg`}
                 alt="team logo"
               />
@@ -268,7 +259,7 @@ const HeaderInfo = styled.div`
 
   p {
     margin: 0;
-  };
+  }
 `;
 
 const HeaderValues = styled.span`
@@ -286,7 +277,7 @@ const StyledLink = styled(Link)`
   @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
     height: 100px;
     width: 100px;
-  };
+  }
 `;
 
 const Body = styled.div`
@@ -311,4 +302,8 @@ const ListItem = styled.li`
 const Span = styled.span`
   font-size: 18px;
   font-weight: bold;
+`;
+
+const StyledTeamLogo = styled.img`
+  max-width: 100%;
 `;
