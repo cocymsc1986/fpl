@@ -1,6 +1,6 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from "styled-components/macro";
 import { Link } from "react-router-dom";
 
 import { Loader } from "./Loader";
@@ -63,9 +63,7 @@ export const MostPopular = ({ stat }) => {
       <BlockContent>
         <H3>{statMap[stat]}</H3>
         <H2>
-          <StyledLink to={`/player/${player.id}`}>
-            {player.web_name}
-          </StyledLink>
+          <StyledLink to={`/player/${player.id}`}>{player.web_name}</StyledLink>
         </H2>
         <Value>
           {player[stat]}
@@ -96,11 +94,11 @@ const Block = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.small}) {
     width: 50%;
-  };
+  }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
     width: 25%;
-  };
+  }
 `;
 
 const BlockContent = styled.div`
@@ -137,9 +135,9 @@ const ImageContainer = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
     display: none;
-  };
+  }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.xlarge}) {
     display: block;
-  };
+  }
 `;
