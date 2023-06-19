@@ -259,11 +259,7 @@ const HeaderInfo = styled.div`
 
   p {
     margin: 0;
-<<<<<<< HEAD
   }
-=======
-  };
->>>>>>> eb657ebdc434220ff3e91059d70050527ecd237b
 `;
 
 const HeaderValues = styled.span`
