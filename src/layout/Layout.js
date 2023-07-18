@@ -2,19 +2,19 @@ import { ThemeProvider, createGlobalStyle } from "styled-components/macro";
 
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import { theme as themeProperties } from '../styles/theme';
+import { theme as themeProperties } from "../styles/theme";
 
 export const Layout = ({ children }) => {
-	return (
-		<ThemeProvider theme={themeProperties}>
-			<GlobalStyle />
-			<Header />
-			<main>
-				<div>{children}</div>
-			</main>
-			<Footer />
-		</ThemeProvider>
-	);
+  return (
+    <ThemeProvider theme={themeProperties}>
+      <GlobalStyle />
+      <Header />
+      <main>
+        <div>{children}</div>
+      </main>
+      <Footer />
+    </ThemeProvider>
+  );
 };
 
 const GlobalStyle = createGlobalStyle`

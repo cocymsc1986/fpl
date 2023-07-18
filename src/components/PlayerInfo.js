@@ -17,7 +17,7 @@ const PLAYER_QUERY = gql`
       total_points
       goals_scored
       assists
-      bonus
+      bps
       transfers_in_event
       transfers_out_event
       form
@@ -72,7 +72,7 @@ export const PlayerInfo = ({ id }) => {
     total_points,
     goals_scored,
     assists,
-    bonus,
+    bps,
     transfers_in_event,
     transfers_out_event,
     form,
@@ -222,7 +222,7 @@ export const PlayerInfo = ({ id }) => {
             Saves: <Span>{saves}</Span>
           </ListItem>
           <ListItem>
-            Bonus: <Span>{bonus}</Span>
+            Bonus: <Span>{bps}</Span>
           </ListItem>
           <ListItem>
             Influence: <Span>{influence}</Span>
