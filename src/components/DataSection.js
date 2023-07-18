@@ -44,7 +44,7 @@ export const DataSection = () => {
   if (error || gwStatusError) return "Error loading teamData.";
 
   const { allTeams } = data;
-  const gw = gwStatusData.eventStatus.status[0]?.event;
+  const gw = gwStatusData?.eventStatus?.status[0]?.event;
 
   return (
     <>
