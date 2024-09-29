@@ -1,7 +1,7 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
-import { Link } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import { Link } from "react-router-dom";
+import styled from "styled-components/macro";
 
 import { Loader } from "./Loader";
 
@@ -50,7 +50,7 @@ export const HighestRated = ({ position, teams }) => {
       <Title>{position}s</Title>
       <List>
         {players &&
-          players.map(player => {
+          players.map((player) => {
             return (
               <ListItem key={player.id}>
                 <Name>
@@ -61,12 +61,8 @@ export const HighestRated = ({ position, teams }) => {
                     {getTeamName(player.team)}
                   </TeamLink>
                 </Name>
-                <Cost>
-                  {player.now_cost / 10}
-                </Cost>
-                <Points>
-                  {player.total_points}
-                </Points>
+                <Cost>{player.now_cost / 10}</Cost>
+                <Points>{player.total_points}</Points>
               </ListItem>
             );
           })}
@@ -82,17 +78,19 @@ const GridItem = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.small}) {
     width: 50%;
-  };
+  }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
     width: 25%;
-  };
+  } ;
 `;
 
 const Title = styled.h3`
+  font-family: ${({ theme }) => theme.font.headerDefault};
+  letter-spacing: 1px;
   text-transform: capitalize;
   margin-top: 0;
-  `;
+`;
 
 const List = styled.ul`
   margin: 0;
@@ -118,7 +116,7 @@ const PlayerLink = styled(Link)`
 
   :hover {
     text-decoration: underline;
-  };
+  }
 `;
 
 const TeamLink = styled(Link)`

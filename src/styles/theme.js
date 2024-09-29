@@ -11,13 +11,14 @@ export const theme = {
     greyDarkest: "#2D2D2D",
     black: "#1e1e1e",
   },
-  spacing: "14px",
-  spacingValue: 14,
+  spacing: "16px",
+  spacingValue: 16,
   spacingSmall: "8px",
   spacingSmallValue: 8,
   maxWidth: "1024px",
   font: {
-    familyDefault: "Raleway",
+    familyDefault: "Inter",
+    headerDefault: "Bebas Neue",
     size: {
       xsmall: "12px",
       small: "14px",

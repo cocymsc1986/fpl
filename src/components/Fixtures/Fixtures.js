@@ -1,7 +1,7 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
-import styled from 'styled-components/macro';
+import styled from "styled-components/macro";
 
 import { Loader } from "../Loader";
 import { getTeamName } from "../../utils/team";
@@ -86,7 +86,7 @@ export const Fixtures = ({ teamData, gw }) => {
           </Header>
           <tbody>
             {fixtures &&
-              fixtures.map(fixture => {
+              fixtures.map((fixture) => {
                 const {
                   team_h,
                   team_a,
@@ -121,16 +121,10 @@ export const Fixtures = ({ teamData, gw }) => {
               })}
           </tbody>
         </List>
-        <Button
-          type="button"
-          onClick={() => loadNewFixtures(id - 1)}
-        >
+        <Button type="button" onClick={() => loadNewFixtures(id - 1)}>
           Previous Week
         </Button>
-        <Button
-          type="button"
-          onClick={() => loadNewFixtures(id + 1)}
-        >
+        <Button type="button" onClick={() => loadNewFixtures(id + 1)}>
           Next Week
         </Button>
       </Wrapper>
@@ -147,17 +141,17 @@ const StyledFixtures = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
     width: 40%;
-  };
+  } ;
 `;
 
 const Wrapper = styled.div`
   @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
     margin-right: ${({ theme }) => theme.spacing};
-  };
+  }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.large}) {
     margin-right: ${({ theme }) => theme.spacingValue * 2}px;
-  };
+  } ;
 `;
 
 const List = styled.table`
@@ -221,5 +215,5 @@ const Button = styled.button`
   :hover {
     background: ${({ theme }) => theme.colours.greyDarkest};
     color: white;
-  };
+  }
 `;
