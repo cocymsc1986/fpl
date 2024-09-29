@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
-import styled from 'styled-components/macro';
+import styled from "styled-components/macro";
 
 import { Loader } from "./Loader";
 import {
@@ -34,7 +34,6 @@ export const UpcomingFixtures = ({ teamData }) => {
     const {
       getAllTeamsFixtures: { fixtures },
     } = data;
-
     const teamFixtureDifficulty = fixtures.map((team, i) =>
       getTeamsFixturesAndDifficulties(team, i + 1, amountOfFixtures)
     );
@@ -77,16 +76,13 @@ export const UpcomingFixtures = ({ teamData }) => {
     <StyledFixtures>
       <Header>
         <span>{titleDifficulty} Upcoming Fixtures (Next 5)</span>
-        <Switch
-          type="button"
-          onClick={() => updateDifficultyType()}
-        >
+        <Switch type="button" onClick={() => updateDifficultyType()}>
           {buttonText}
         </Switch>
       </Header>
       <Table>
         <tbody>
-          {getFixturesByDifficulty(5, 5).map(teamInfo => {
+          {getFixturesByDifficulty(5, 5).map((teamInfo) => {
             return (
               <tr key={`upcoming-fixtures-1-${teamInfo.team}`}>
                 <Team>
@@ -94,7 +90,7 @@ export const UpcomingFixtures = ({ teamData }) => {
                     {teams && getTeamName(teams, teamInfo.team)}
                   </StyledLink>
                 </Team>
-                {teamInfo.fixtures.map(fixture => {
+                {teamInfo.fixtures.map((fixture) => {
                   return (
                     <Fixture key={`upcoming-fixtures-team-1-${fixture.team}`}>
                       <FixtureTeam>
@@ -115,16 +111,13 @@ export const UpcomingFixtures = ({ teamData }) => {
 
       <Header>
         <span>{titleDifficulty} Upcoming Fixtures (Next 3)</span>
-        <Switch
-          type="button"
-          onClick={() => updateDifficultyType()}
-        >
+        <Switch type="button" onClick={() => updateDifficultyType()}>
           {buttonText}
         </Switch>
       </Header>
       <Table>
         <tbody>
-          {getFixturesByDifficulty(3, 5).map(teamInfo => {
+          {getFixturesByDifficulty(3, 5).map((teamInfo) => {
             return (
               <tr key={`upcoming-fixtures-2-${teamInfo.team}`}>
                 <Team>
@@ -132,7 +125,7 @@ export const UpcomingFixtures = ({ teamData }) => {
                     {teams && getTeamName(teams, teamInfo.team)}
                   </StyledLink>
                 </Team>
-                {teamInfo.fixtures.map(fixture => {
+                {teamInfo.fixtures.map((fixture) => {
                   return (
                     <Fixture key={`upcoming-fixtures-team-2-${fixture.team}`}>
                       <FixtureTeam>
@@ -165,7 +158,7 @@ const StyledFixtures = styled.div`
   @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
     width: 60%;
     margin-top: 0;
-  };
+  } ;
 `;
 
 const Header = styled.h3`
@@ -173,22 +166,23 @@ const Header = styled.h3`
   justify-content: space-between;
   align-items: center;
   margin-bottom: ${({ theme }) => theme.spacingValue / 2}px;
+  font-family: ${({ theme }) => theme.font.headerDefault};
+  letter-spacing: 1px;
 
   :first-child {
     margin-top: 0;
-  };
+  }
 `;
 
 const Switch = styled.button`
   font-size: ${({ theme }) => theme.font.size.body};
   display: inline-block;
-  padding: ${({ theme }) => theme.spacingValue / 4}px ${({ theme }) => theme.spacingValue / 2}px;
+  padding: ${({ theme }) => theme.spacingValue / 2}px
+    ${({ theme }) => theme.spacingValue}px;
   background: ${({ theme }) => theme.colours.blueDark};
-  font-weight: bold;
   color: white;
-  /* margin: ${({ theme }) => theme.spacingValue / 2}px 0 ${({ theme }) => theme.spacingValue / 2}px ${({ theme }) => theme.spacing}; */
   border-radius: 3px;
-  font-family: 'Raleway';
+  font-family: ${({ theme }) => theme.font.familyDefault};
   cursor: pointer;
   border: none;
 `;
@@ -200,7 +194,7 @@ const Table = styled.table`
 
   tr:last-child td {
     border-bottom: none;
-  };
+  }
 `;
 
 const Team = styled.td`
@@ -211,7 +205,7 @@ const Team = styled.td`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.large}) {
     font-size: 16px;
-  };
+  } ;
 `;
 
 const Fixture = styled.td`
@@ -226,15 +220,16 @@ const FixtureTeam = styled.p`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.large}) {
     font-size: ${({ theme }) => theme.font.size.small};
-  };
+  } ;
 `;
 
 const FixtureDifficulty = styled.p`
-  font-size: ${({ theme }) => theme.font.size.xsmall};
+  font-size: ${({ theme }) => theme.font.size.small};
   margin: 0;
   text-align: center;
+  font-weight: bold;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.large}) {
     font-size: ${({ theme }) => theme.font.size.small};
-  };
+  } ;
 `;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { gql, ApolloConsumer } from "@apollo/client";
 import { Link } from "react-router-dom";
-import styled from 'styled-components/macro';
+import styled from "styled-components/macro";
 
 const PLAYERS_SEARCH_QUERY = gql`
   query playersSearch($term: String) {
@@ -53,14 +53,14 @@ export const Search = () => {
               <SearchResults>
                 {searchableData.length
                   ? searchableData.map((player) => {
-                    return (
-                      <SearchItem key={`search-${player.id}`}>
-                        <SearchResult to={`player/${player.id}`}>
-                          {player.first_name} {player.second_name}
-                        </SearchResult>
-                      </SearchItem>
-                    );
-                  })
+                      return (
+                        <SearchItem key={`search-${player.id}`}>
+                          <SearchResult to={`player/${player.id}`}>
+                            {player.first_name} {player.second_name}
+                          </SearchResult>
+                        </SearchItem>
+                      );
+                    })
                   : "No results"}
               </SearchResults>
             )}
@@ -73,7 +73,7 @@ export const Search = () => {
 
 const StyledSearch = styled.div`
   position: relative;
-  margin: ${({ theme }) => theme.spacingValue / 2}px 0 ${({ theme }) => theme.spacing};
+  margin: 0 0 ${({ theme }) => theme.spacing};
 `;
 
 const SearchWrapper = styled.div`
@@ -91,15 +91,15 @@ const SearchInput = styled.input`
   ::placeholder {
     font-family: ${({ theme }) => theme.font.familyDefault};
     color: ${({ theme }) => theme.colours.grey};
-  };
+  }
 
   &:focus {
     outline: none;
-  };
+  }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
     width: 600px;
-  };
+  } ;
 `;
 
 const SearchResults = styled.ul`
@@ -117,11 +117,11 @@ const SearchResults = styled.ul`
 `;
 
 const SearchItem = styled.li`
-  padding: 4px;
+  padding: 4px 8px 8px;
 
   &:hover {
     text-decoration: underline;
-  };
+  }
 `;
 
 const SearchResult = styled(Link)`

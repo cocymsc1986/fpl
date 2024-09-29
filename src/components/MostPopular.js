@@ -88,7 +88,7 @@ const StyledLink = styled(Link)`
 
 const Block = styled.div`
   width: 100%;
-  padding: ${({ theme }) => theme.spacingSmall};
+  padding: 1px;
   box-sizing: border-box;
   flex-grow: 1;
 
@@ -110,27 +110,32 @@ const BlockContent = styled.div`
 `;
 
 const HeaderStyles = css`
-  margin: 0 0 ${({ theme }) => theme.spacing};
+  margin: 0 0 ${({ theme }) => theme.spacingSmall};
 `;
 
 const H2 = styled.h2`
   ${HeaderStyles};
-`;
-
-const H3 = styled.h3`
-  ${HeaderStyles};
+  font-family: ${({ theme }) => theme.font.familyDefault};
+  font-size: ${({ theme }) => theme.font.size.header};
   font-weight: 100;
 `;
 
-const Value = styled(H3)`
+const H3 = styled.h3`
+  margin: 0;
+  font-family: ${({ theme }) => theme.font.headerDefault};
+  letter-spacing: 1px;
+  font-weight: 100;
+`;
+
+const Value = styled.h3`
   color: ${({ theme }) => theme.colours.green};
-  margin: 0 0 ${({ theme }) => theme.spacing};
+  margin: 0;
 `;
 
 const ImageContainer = styled.div`
   position: absolute;
   bottom: -90px;
-  right: ${({ theme }) => theme.spacing};
+  right: 0;
   pointer-events: none;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {

@@ -1,6 +1,6 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
-import styled from 'styled-components/macro';
+import styled from "styled-components/macro";
 
 import { Loader } from "./Loader";
 
@@ -72,7 +72,7 @@ export const TeamFixtures = ({ id }) => {
         <Row>
           <Item>Fixtures</Item>
           {getTeamsFixturesAndDifficulties(fixtures, id).fixtures.map(
-            fixture => (
+            (fixture) => (
               <Item key={`team-name-${fixture.team}`}>
                 {getTeamShortName(teams, fixture.team)} ({fixture.venue})
               </Item>
@@ -82,7 +82,7 @@ export const TeamFixtures = ({ id }) => {
         <Row>
           <Item>Difficulty</Item>
           {getTeamsFixturesAndDifficulties(fixtures, id).fixtures.map(
-            fixture => (
+            (fixture) => (
               <Item key={`team-difficulty-${fixture.team}`}>
                 {fixture.difficulty}
               </Item>
@@ -100,12 +100,13 @@ const StyledFixtures = styled.table`
   background: ${({ theme }) => theme.colours.green};
   border-spacing: 0;
   margin: 0 auto;
+  border: 2px solid;
 `;
 
 const Row = styled.tr`
   &:last-child td {
     border-bottom: none;
-  };
+  }
 `;
 
 const Item = styled.td`
@@ -119,7 +120,7 @@ const Item = styled.td`
   &:first-child {
     border-right: 2px solid ${({ theme }) => theme.colours.greyDarkest};
     text-align: left;
-  };
+  }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
     padding-top: ${({ theme }) => theme.spacing};
@@ -128,4 +129,3 @@ const Item = styled.td`
     padding-right: ${({ theme }) => theme.spacing};
   }
 `;
-
