@@ -3,8 +3,6 @@ import { gql, useQuery } from "@apollo/client";
 import styled, { css } from "styled-components/macro";
 import { Link } from "react-router-dom";
 
-import { Loader } from "./Loader";
-
 const PLAYER_WITH_HIGHEST_PROP_QUERY = gql`
   query playerWithHighestProp($prop: String) {
     playerWithHighestProp(prop: $prop) {
@@ -34,9 +32,7 @@ export const MostPopular = ({ stat }) => {
   if (loading) {
     return (
       <Block>
-        <BlockContent>
-          <Loader size={60} invert />
-        </BlockContent>
+        <BlockContent loading>&nbsp;</BlockContent>
       </Block>
     );
   }
@@ -102,11 +98,18 @@ const Block = styled.div`
 `;
 
 const BlockContent = styled.div`
+  ${({ theme }) => theme.skeletonLoadingAnimation}
+
   position: relative;
   padding: ${({ theme }) => theme.spacing};
   background: ${({ theme }) => theme.colours.black};
   color: white;
   overflow: hidden;
+  min-height: 6.1rem;
+  ${(props) =>
+    props.loading
+      ? "animation: skeleton-loading 1s linear infinite alternate"
+      : ""};
 `;
 
 const HeaderStyles = css`
