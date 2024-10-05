@@ -38,4 +38,13 @@ export const theme = {
     large: "830px",
     xlarge: "1024px",
   },
+  skeletonLoadingAnimation: `
+    @keyframes skeleton-loading {
+      0% {
+        background-color: hsl(200, 20%, 80%);
+      }
+      100% {
+        background-color: hsl(200, 20%, 95%);
+      }
+    }`,
 };

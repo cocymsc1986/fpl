@@ -3,8 +3,6 @@ import { gql, useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
 
-import { Loader } from "./Loader";
-
 const PLAYERS_BY_PROP_AND_POSITION_QUERY = gql`
   query playersByPropAndPos($prop: String, $position: String, $amount: Int) {
     playersByPropAndPos(prop: $prop, position: $position, amount: $amount) {
@@ -32,7 +30,12 @@ export const HighestRated = ({ position, teams }) => {
     }
   );
 
-  if (loading) return <Loader />;
+  if (loading)
+    return (
+      <GridItem>
+        <Skeleton loading />
+      </GridItem>
+    );
   if (error) return `Error loading highest rated ${position}s.`;
 
   const getTeamName = (id) => {
@@ -70,6 +73,16 @@ export const HighestRated = ({ position, teams }) => {
     </GridItem>
   );
 };
+
+const Skeleton = styled.div`
+  ${({ theme }) => theme.skeletonLoadingAnimation}
+  ${(props) =>
+    props.loading
+      ? "animation: skeleton-loading 1s linear infinite alternate"
+      : ""};
+  min-height: 25rem;
+  margin-right: 1rem;
+`;
 
 const GridItem = styled.div`
   width: 100%;
