@@ -1,5 +1,6 @@
 name: deploy-app-on-s3
 on:
+  workflow_dispatch:
   pull_request:
     branches: [main]
     types: [closed]
