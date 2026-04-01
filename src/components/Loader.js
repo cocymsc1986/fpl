@@ -5,7 +5,7 @@ import styled, { css } from "styled-components/macro";
 export const Loader = ({ fullScreen = false, size = 40, invert = false }) => (
   <div>
     <StyledLoader data-testid="loader" fullScreen={fullScreen}>
-      <FadeLoader loading size={size} color={invert ? "#FFFFFF" : "black"} />
+      <FadeLoader loading size={size} color="#fdb4f8" />
     </StyledLoader>
   </div>
 );

@@ -1,7 +1,7 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
-import styled, { css } from 'styled-components/macro';
+import styled from "styled-components/macro";
 
 import { TeamFixtures } from "./TeamFixtures";
 import { Loader } from "./Loader";
@@ -33,13 +33,13 @@ const PLAYERS_BY_TEAM_QUERY = gql`
   }
 `;
 
+const ELEMENT_TYPE_ORDER = { 1: 0, 2: 1, 3: 2, 4: 3 };
+
 export const TeamInfo = ({ id }) => {
   const { loading: teamLoading, error: teamError, data: teamData } = useQuery(
     TEAM_QUERY,
     {
-      variables: {
-        id,
-      },
+      variables: { id },
       notifyOnNetworkStatusChange: true,
     }
   );
@@ -49,9 +49,7 @@ export const TeamInfo = ({ id }) => {
     error: playersError,
     data: playersData,
   } = useQuery(PLAYERS_BY_TEAM_QUERY, {
-    variables: {
-      team: id,
-    },
+    variables: { team: id },
     notifyOnNetworkStatusChange: true,
   });
 
@@ -61,134 +59,202 @@ export const TeamInfo = ({ id }) => {
   const { team } = teamData;
   const { playersByTeam } = playersData;
 
+  const sortedPlayers = [...playersByTeam.players].sort(
+    (a, b) =>
+      (ELEMENT_TYPE_ORDER[a.element_type] ?? 9) -
+      (ELEMENT_TYPE_ORDER[b.element_type] ?? 9)
+  );
+
   return (
-    <StyledTeam>
-      <Header>
-        <HeaderContainer>
-          <Badge
-            src={`https://resources.premierleague.com/premierleague/badges/t${team.code}.svg`}
-            alt={`${team.name} logo`}
-          />
-          <Name>{team.name}</Name>
-        </HeaderContainer>
-      </Header>
+    <PageWrapper>
+      {/* Team Hero */}
+      <TeamHero>
+        <Badge
+          src={`https://resources.premierleague.com/premierleague/badges/t${team.code}.svg`}
+          alt={`${team.name} logo`}
+        />
+        <TeamName>{team.name}</TeamName>
+      </TeamHero>
+
+      {/* Fixture strip */}
       <TeamFixtures id={id} />
+
+      {/* Player table */}
       <Data>
         <Container>
-          <ContainerHeader>Player stats</ContainerHeader>
-          <Table>
-            <thead>
-              <PlayerInfo>
-                <TH>Name</TH>
-                <TH>Form</TH>
-                <TH>Status</TH>
-                <TH>PPG</TH>
-                <TH>Cost</TH>
-                <TH>Points</TH>
-              </PlayerInfo>
-            </thead>
-            <tbody>
-              {playersByTeam &&
-                playersByTeam.players.map((player) => {
-                  return (
-                    <PlayerInfo key={`player-info-${player.id}`}>
-                      <TD>
-                        <StyledLink to={`/player/${player.id}`}>
-                          {player.first_name} {player.web_name}
-                        </StyledLink>
-                      </TD>
-                      <TD>{player.form}</TD>
-                      <TD>{player.status}</TD>
-                      <TD>{player.points_per_game}</TD>
-                      <TD>{player.now_cost / 10}</TD>
-                      <TD>{player.total_points}</TD>
-                    </PlayerInfo>
-                  );
-                })}
-            </tbody>
-          </Table>
+          <SectionLabel>Squad Stats</SectionLabel>
+          <TableWrapper>
+            <Table>
+              <thead>
+                <tr>
+                  <TH>Name</TH>
+                  <TH>Form</TH>
+                  <TH>Status</TH>
+                  <TH>PPG</TH>
+                  <TH>Cost</TH>
+                  <TH>Points</TH>
+                </tr>
+              </thead>
+              <tbody>
+                {sortedPlayers.map((player) => (
+                  <PlayerRow key={`player-row-${player.id}`}>
+                    <TD>
+                      <PlayerLink to={`/player/${player.id}`}>
+                        {player.first_name} {player.web_name}
+                      </PlayerLink>
+                    </TD>
+                    <TD>{player.form}</TD>
+                    <TD>
+                      <StatusDot $status={player.status} />
+                    </TD>
+                    <TD>{player.points_per_game}</TD>
+                    <TD>£{player.now_cost / 10}m</TD>
+                    <PointsTD>{player.total_points}</PointsTD>
+                  </PlayerRow>
+                ))}
+              </tbody>
+            </Table>
+          </TableWrapper>
         </Container>
       </Data>
-    </StyledTeam>
+    </PageWrapper>
   );
 };
 
-const StyledTeam = styled.div`
+/* ─── Styled Components ─────────────────────────────────────── */
 
-`;
-
-const Header = styled.div`
-  padding: ${({ theme }) => theme.spacing};
-  border-bottom: 5px solid ${({ theme }) => theme.colours.greyDarkest};
-`;
-
-const HeaderContainer = styled.div`
+const PageWrapper = styled.div`
   max-width: ${({ theme }) => theme.maxWidth};
   margin: 0 auto;
+`;
+
+const TeamHero = styled.header`
   display: flex;
   align-items: center;
+  gap: ${({ theme }) => theme.spacing};
+  padding: ${({ theme }) => theme.spacing};
+  background: ${({ theme }) => theme.colours.surfaceContainerHigh};
 `;
 
 const Badge = styled.img`
-  width: 30%;
-  max-width: 200px;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
+    width: 120px;
+    height: 120px;
+  }
 `;
 
-const Name = styled.h1`
-  padding: ${({ theme }) => theme.spacing} ${({ theme }) => theme.spacingValue * 2}px;
+const TeamName = styled.h1`
+  font-family: ${({ theme }) => theme.font.headerDefault};
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colours.onSurface};
+  margin: 0;
+  letter-spacing: 0.03em;
 `;
 
 const Data = styled.div`
-  @media (min-width: ${({ theme }) => theme.breakpoints.small}) {
-    padding: ${({ theme }) => theme.spacing};
-  };
+  padding: ${({ theme }) => theme.spacing};
 `;
 
-const Container = styled.div`
-  max-width: ${({ theme }) => theme.maxWidth};
-  margin: 0 auto;
+const Container = styled.div``;
+
+const SectionLabel = styled.h2`
+  font-family: ${({ theme }) => theme.font.headerDefault};
+  font-style: italic;
+  font-weight: 700;
+  font-size: ${({ theme }) => theme.font.size.subheader};
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colours.onSurface};
+  margin: 0 0 ${({ theme }) => theme.spacingSmall};
+  letter-spacing: 0.03em;
+`;
+
+const TableWrapper = styled.div`
+  overflow-x: auto;
+  border-radius: 8px;
+  overflow: hidden;
 `;
 
 const Table = styled.table`
+  width: 100%;
   border-collapse: collapse;
-`;
-
-const tableStyles = css`
-  font-size: ${({ theme }) => theme.font.size.small};
-  text-align: center;
-
-  &:first-child {
-    text-align: left;
-    padding: ${({ theme }) => theme.spacing};
-  };
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.small}) {
-    min-width: 50px;
-    font-size: ${({ theme }) => theme.font.size.body};
-  };
-`;
-
-const TD = styled.td`
-  ${tableStyles};
+  background: ${({ theme }) => theme.colours.surfaceContainerLow};
 `;
 
 const TH = styled.th`
-  ${tableStyles};
+  font-family: ${({ theme }) => theme.font.familyDefault};
+  font-size: ${({ theme }) => theme.font.size.xsmall};
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colours.onSurfaceVariant};
+  text-align: center;
+  padding: 10px ${({ theme }) => theme.spacingSmall};
+  background: ${({ theme }) => theme.colours.surfaceContainerHighest};
+
+  &:first-child {
+    text-align: left;
+    padding-left: ${({ theme }) => theme.spacing};
+  }
 `;
 
-const ContainerHeader = styled.h2`
-  margin-left: ${({ theme }) => theme.spacing};
+const PlayerRow = styled.tr`
+  height: 44px;
+  transition: background 0.1s ease;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.small}) {
-    margin-left: 0;
-  };
+  &:nth-child(even) {
+    background: ${({ theme }) => theme.colours.surfaceContainer};
+  }
+
+  &:hover {
+    background: ${({ theme }) => theme.colours.surfaceContainerHigh};
+  }
 `;
 
-const PlayerInfo = styled.tr`
-  border-bottom: 1px solid ${({ theme }) => theme.colours.greyDark};
-  height: ${({ theme }) => theme.spacingValue * 3}px;
+const TD = styled.td`
+  font-size: ${({ theme }) => theme.font.size.small};
+  text-align: center;
+  padding: ${({ theme }) => theme.spacingSmall};
+  color: ${({ theme }) => theme.colours.onSurface};
+
+  &:first-child {
+    text-align: left;
+    padding-left: ${({ theme }) => theme.spacing};
+  }
 `;
 
-const StyledLink = styled(Link)`
-  color: inherit;
+const PointsTD = styled(TD)`
+  font-family: ${({ theme }) => theme.font.headerDefault};
+  font-weight: 700;
+  color: ${({ theme }) => theme.colours.primary};
+`;
+
+const PlayerLink = styled(Link)`
+  color: ${({ theme }) => theme.colours.onSurface};
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    color: ${({ theme }) => theme.colours.primary};
+    text-decoration: none;
+  }
+`;
+
+const StatusDot = styled.span`
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: ${({ $status, theme }) =>
+    $status === "a"
+      ? theme.colours.secondary
+      : $status === "d"
+      ? "#f5a623"
+      : theme.colours.tertiary};
 `;

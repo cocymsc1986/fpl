@@ -35,6 +35,11 @@ const ALL_TEAMS_QUERY = gql`
   }
 `;
 
+const difficultyColor = (d) => {
+  const map = { 1: "#00fd84", 2: "#7bc67e", 3: "#acabaa", 4: "#ff6e85", 5: "#ff0033" };
+  return map[d] || "#acabaa";
+};
+
 export const TeamFixtures = ({ id }) => {
   const {
     loading: fixturesLoading,
@@ -66,66 +71,75 @@ export const TeamFixtures = ({ id }) => {
     allTeams: { teams },
   } = teamsData;
 
+  const processedFixtures = getTeamsFixturesAndDifficulties(fixtures, id).fixtures;
+
   return (
-    <StyledFixtures>
-      <tbody>
-        <Row>
-          <Item>Fixtures</Item>
-          {getTeamsFixturesAndDifficulties(fixtures, id).fixtures.map(
-            (fixture) => (
-              <Item key={`team-name-${fixture.team}`}>
-                {getTeamShortName(teams, fixture.team)} ({fixture.venue})
-              </Item>
-            )
-          )}
-        </Row>
-        <Row>
-          <Item>Difficulty</Item>
-          {getTeamsFixturesAndDifficulties(fixtures, id).fixtures.map(
-            (fixture) => (
-              <Item key={`team-difficulty-${fixture.team}`}>
-                {fixture.difficulty}
-              </Item>
-            )
-          )}
-        </Row>
-      </tbody>
-    </StyledFixtures>
+    <FixtureWrapper>
+      <FixtureStrip>
+        {processedFixtures.map((fixture) => (
+          <FixtureChip key={`chip-${fixture.team}`}>
+            <OpponentLabel>{getTeamShortName(teams, fixture.team)}</OpponentLabel>
+            <VenueLabel>{fixture.venue}</VenueLabel>
+            <DifficultyBar $color={difficultyColor(fixture.difficulty)} />
+          </FixtureChip>
+        ))}
+      </FixtureStrip>
+    </FixtureWrapper>
   );
 };
 
-const StyledFixtures = styled.table`
-  width: 100%;
+const FixtureWrapper = styled.div`
   max-width: ${({ theme }) => theme.maxWidth};
-  background: ${({ theme }) => theme.colours.green};
-  border-spacing: 0;
   margin: 0 auto;
-  border: 2px solid;
+  padding: 0 ${({ theme }) => theme.spacing};
 `;
 
-const Row = styled.tr`
-  &:last-child td {
-    border-bottom: none;
+const FixtureStrip = styled.div`
+  display: flex;
+  overflow-x: auto;
+  gap: ${({ theme }) => theme.spacingSmall};
+  padding: ${({ theme }) => theme.spacingSmall} 0;
+  background: ${({ theme }) => theme.colours.surfaceContainerLow};
+  border-radius: 8px;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 `;
 
-const Item = styled.td`
-  border-bottom: 2px solid ${({ theme }) => theme.colours.greyDarkest};
-  padding-top: ${({ theme }) => theme.spacingValue}px;
-  padding-bottom: ${({ theme }) => theme.spacingValue}px;
-  padding-left: ${({ theme }) => theme.spacingValue / 2}px;
-  padding-right: ${({ theme }) => theme.spacingValue / 2}px;
-  text-align: center;
+const FixtureChip = styled.div`
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  background: ${({ theme }) => theme.colours.surfaceContainerHigh};
+  border-radius: 6px;
+  min-width: 56px;
+`;
 
-  &:first-child {
-    border-right: 2px solid ${({ theme }) => theme.colours.greyDarkest};
-    text-align: left;
-  }
+const OpponentLabel = styled.span`
+  font-family: ${({ theme }) => theme.font.headerDefault};
+  font-size: ${({ theme }) => theme.font.size.small};
+  font-weight: 700;
+  color: ${({ theme }) => theme.colours.onSurface};
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+`;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
-    padding-top: ${({ theme }) => theme.spacing};
-    padding-bottom: ${({ theme }) => theme.spacing};
-    padding-left: ${({ theme }) => theme.spacing};
-    padding-right: ${({ theme }) => theme.spacing};
-  }
+const VenueLabel = styled.span`
+  font-size: ${({ theme }) => theme.font.size.xsmall};
+  color: ${({ theme }) => theme.colours.onSurfaceVariant};
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+`;
+
+const DifficultyBar = styled.div`
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  background: ${({ $color }) => $color};
 `;

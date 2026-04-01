@@ -44,6 +44,7 @@ export const Search = () => {
       {(client) => (
         <StyledSearch>
           <SearchWrapper>
+            <SearchIcon className="material-symbols-outlined">search</SearchIcon>
             <SearchInput
               placeholder="Search for a player..."
               onChange={(e) => executeSearch(client, e.target.value)}
@@ -61,7 +62,7 @@ export const Search = () => {
                         </SearchItem>
                       );
                     })
-                  : "No results"}
+                  : <NoResults>No results</NoResults>}
               </SearchResults>
             )}
           </SearchWrapper>
@@ -73,59 +74,90 @@ export const Search = () => {
 
 const StyledSearch = styled.div`
   position: relative;
-  margin: 0 0 ${({ theme }) => theme.spacing};
-`;
-
-const SearchWrapper = styled.div`
-  border-bottom: 2px solid ${({ theme }) => theme.colours.greyDarkest};
+  padding: ${({ theme }) => theme.spacingSmall} ${({ theme }) => theme.spacing};
   max-width: ${({ theme }) => theme.maxWidth};
   margin: 0 auto;
 `;
 
-const SearchInput = styled.input`
-  width: ${`calc(100% - ${({ theme }) => theme.spacingValue * 2}px)`};
-  font-size: ${({ theme }) => theme.font.size.lead};
-  padding: ${({ theme }) => theme.spacing};
-  border: none;
+const SearchWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+`;
 
-  ::placeholder {
+const SearchIcon = styled.span`
+  position: absolute;
+  left: 14px;
+  color: ${({ theme }) => theme.colours.onSurfaceVariant};
+  font-size: 20px;
+  pointer-events: none;
+  z-index: 1;
+`;
+
+const SearchInput = styled.input`
+  width: 100%;
+  font-size: ${({ theme }) => theme.font.size.lead};
+  font-family: ${({ theme }) => theme.font.familyDefault};
+  padding: 14px 16px 14px 46px;
+  background: ${({ theme }) => theme.colours.surfaceContainerHigh};
+  color: ${({ theme }) => theme.colours.onSurface};
+  border: 2px solid transparent;
+  border-radius: 8px;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colours.onSurfaceVariant};
     font-family: ${({ theme }) => theme.font.familyDefault};
-    color: ${({ theme }) => theme.colours.grey};
   }
 
   &:focus {
     outline: none;
+    border-color: ${({ theme }) => theme.colours.primary};
+    box-shadow: 0 0 0 3px rgba(253, 180, 248, 0.15);
   }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
-    width: 600px;
-  } ;
 `;
 
 const SearchResults = styled.ul`
   position: absolute;
-  top: 32px;
-  min-width: 400px;
-  font-size: ${({ theme }) => theme.font.size.lead};
-  padding: ${({ theme }) => theme.spacingSmall};
-  background: white;
-  border: 1px solid ${({ theme }) => theme.colours.green};
-  cursor: pointer;
-  list-style-type: none;
-  z-index: 1;
-  box-shadow: 0px 4px 15px -4px black;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: ${({ theme }) => theme.colours.surfaceContainerHighest};
+  border-radius: 8px;
+  padding: ${({ theme }) => theme.spacingSmall} 0;
+  list-style: none;
+  margin: 0;
+  z-index: 200;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
 `;
 
 const SearchItem = styled.li`
-  padding: 4px 8px 8px;
+  padding: 0;
 
   &:hover {
-    text-decoration: underline;
+    background: ${({ theme }) => theme.colours.surfaceContainerHigh};
   }
 `;
 
 const SearchResult = styled(Link)`
   display: block;
+  padding: 10px ${({ theme }) => theme.spacing};
+  font-size: ${({ theme }) => theme.font.size.lead};
+  color: ${({ theme }) => theme.colours.onSurface};
+  font-family: ${({ theme }) => theme.font.familyDefault};
   text-decoration: none;
-  color: ${({ theme }) => theme.colours.black};
+
+  &:hover {
+    color: ${({ theme }) => theme.colours.primary};
+    text-decoration: none;
+  }
+`;
+
+const NoResults = styled.li`
+  padding: 10px ${({ theme }) => theme.spacing};
+  color: ${({ theme }) => theme.colours.onSurfaceVariant};
+  font-size: ${({ theme }) => theme.font.size.body};
+  list-style: none;
 `;

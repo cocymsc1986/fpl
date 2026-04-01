@@ -1,5 +1,6 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
+import styled from "styled-components/macro";
 
 import { HighestRatedContainer } from "./HighestRatedContainer";
 import { MostPopularContainer } from "./MostPopularContainer";
@@ -48,9 +49,45 @@ export const DataSection = () => {
 
   return (
     <>
+      {gw && (
+        <GWBanner>
+          <GWLabel>Current Gameweek</GWLabel>
+          <GWNumber>GW{gw}</GWNumber>
+        </GWBanner>
+      )}
       <MostPopularContainer teamData={allTeams} />
       <HighestRatedContainer teamData={allTeams} />
       <FixturesAndResults teamData={allTeams} gw={gw} />
     </>
   );
 };
+
+const GWBanner = styled.div`
+  max-width: ${({ theme }) => theme.maxWidth};
+  margin: ${({ theme }) => theme.spacingSmall} auto;
+  padding: 14px ${({ theme }) => theme.spacing};
+  background: ${({ theme }) => theme.colours.surfaceContainerHigh};
+  border-left: 4px solid ${({ theme }) => theme.colours.primary};
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+
+const GWLabel = styled.span`
+  font-family: ${({ theme }) => theme.font.familyDefault};
+  font-size: ${({ theme }) => theme.font.size.xsmall};
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colours.onSurfaceVariant};
+`;
+
+const GWNumber = styled.span`
+  font-family: ${({ theme }) => theme.font.headerDefault};
+  font-style: italic;
+  font-weight: 700;
+  font-size: ${({ theme }) => theme.font.size.header};
+  color: ${({ theme }) => theme.colours.primary};
+  line-height: 1;
+`;

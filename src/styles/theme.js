@@ -1,15 +1,34 @@
 export const theme = {
   colours: {
-    purple: "#38003C",
-    green: "#00FF87",
-    blue: "#66E6FF",
-    blueDark: "#2A70D0",
-    greyLight: "#D3D3D3",
-    grey: "#BBB7B7",
-    greyDark: "#999999",
-    greyDarker: "#757474",
-    greyDarkest: "#2D2D2D",
-    black: "#1e1e1e",
+    // Primary — Neon Pink
+    primary: "#fdb4f8",
+    onPrimary: "#662d67",
+    primaryContainer: "#ce89ca",
+    onPrimaryContainer: "#400743",
+
+    // Secondary — Pitch Green
+    secondary: "#00fd84",
+    onSecondary: "#005b2b",
+    secondaryContainer: "#006d35",
+    onSecondaryContainer: "#e3ffe4",
+
+    // Tertiary — Aggressive Red
+    tertiary: "#ff6e85",
+    onTertiary: "#480014",
+
+    // Surface hierarchy (true black → bright)
+    surface: "#0e0e0e",
+    surfaceContainerLowest: "#000000",
+    surfaceContainerLow: "#131313",
+    surfaceContainer: "#191a1a",
+    surfaceContainerHigh: "#1f2020",
+    surfaceContainerHighest: "#252626",
+    surfaceBright: "#2c2c2c",
+
+    // On-surface
+    onSurface: "#ffffff",
+    onSurfaceVariant: "#acabaa",
+    outlineVariant: "#484848",
   },
   spacing: "16px",
   spacingValue: 16,
@@ -18,18 +37,18 @@ export const theme = {
   maxWidth: "1024px",
   font: {
     familyDefault: "Inter",
-    headerDefault: "Bebas Neue",
+    headerDefault: "Space Grotesk",
     size: {
-      xsmall: "12px",
-      small: "14px",
-      body: "16px",
-      bodyValue: 16,
-      header: "2.5rem",
-      headerValue: 40,
-      subheader: "2rem",
-      subheaderValue: 32,
-      lead: "1.25rem",
-      leadValue: 20,
+      xsmall: "10px",
+      small: "12px",
+      body: "14px",
+      bodyValue: 14,
+      header: "2rem",
+      headerValue: 32,
+      subheader: "1.5rem",
+      subheaderValue: 24,
+      lead: "1rem",
+      leadValue: 16,
     },
   },
   breakpoints: {
@@ -41,10 +60,10 @@ export const theme = {
   skeletonLoadingAnimation: `
     @keyframes skeleton-loading {
       0% {
-        background-color: hsl(200, 20%, 80%);
+        background-color: #1f2020;
       }
       100% {
-        background-color: hsl(200, 20%, 95%);
+        background-color: #2c2c2c;
       }
     }`,
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
-import styled, { css } from "styled-components/macro";
+import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 
 const PLAYER_WITH_HIGHEST_PROP_QUERY = gql`
@@ -21,6 +21,15 @@ const PLAYER_WITH_HIGHEST_PROP_QUERY = gql`
   }
 `;
 
+const statMap = {
+  selected_by_percent: "Most Selected",
+  total_points: "Total Points",
+  transfers_in_event: "Most In This Week",
+  transfers_out_event: "Most Out This Week",
+  form: "Form",
+  value_form: "Best Value",
+};
+
 export const MostPopular = ({ stat }) => {
   const { loading, error, data } = useQuery(PLAYER_WITH_HIGHEST_PROP_QUERY, {
     variables: {
@@ -31,9 +40,9 @@ export const MostPopular = ({ stat }) => {
 
   if (loading) {
     return (
-      <Block>
-        <BlockContent loading>&nbsp;</BlockContent>
-      </Block>
+      <CardOuter>
+        <CardContent $loading />
+      </CardOuter>
     );
   }
 
@@ -42,104 +51,100 @@ export const MostPopular = ({ stat }) => {
   }
 
   const { playerWithHighestProp } = data;
-
-  const statMap = {
-    selected_by_percent: "Most Selected",
-    total_points: "Total Points",
-    transfers_in_event: "Most In This Week",
-    transfers_out_event: "Most Out This Week",
-    form: "Form",
-    value_form: "Best Value",
-  };
-
   const { player } = playerWithHighestProp;
 
   return (
-    <Block>
-      <BlockContent>
-        <H3>{statMap[stat]}</H3>
-        <H2>
+    <CardOuter>
+      <CardContent>
+        <StatLabel>{statMap[stat]}</StatLabel>
+        <PlayerName>
           <StyledLink to={`/player/${player.id}`}>{player.web_name}</StyledLink>
-        </H2>
-        <Value>
+        </PlayerName>
+        <StatValue>
           {player[stat]}
           {stat === "selected_by_percent" && "%"}
-        </Value>
+        </StatValue>
         <ImageContainer>
           <img
             src={`https://resources.premierleague.com/premierleague/photos/players/110x140/p${player.code}.png`}
             alt={player.web_name}
-            width="157"
-            height="200"
+            width="110"
+            height="140"
           />
         </ImageContainer>
-      </BlockContent>
-    </Block>
+      </CardContent>
+    </CardOuter>
   );
 };
 
-const StyledLink = styled(Link)`
-  color: white;
+const CardOuter = styled.div`
+  padding: 2px;
 `;
 
-const Block = styled.div`
-  width: 100%;
-  padding: 1px;
-  box-sizing: border-box;
-  flex-grow: 1;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.small}) {
-    width: 50%;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
-    width: 25%;
-  }
-`;
-
-const BlockContent = styled.div`
+const CardContent = styled.div`
   ${({ theme }) => theme.skeletonLoadingAnimation}
 
   position: relative;
   padding: ${({ theme }) => theme.spacing};
-  background: ${({ theme }) => theme.colours.black};
-  color: white;
+  background: ${({ theme }) => theme.colours.surfaceContainerHigh};
+  color: ${({ theme }) => theme.colours.onSurface};
   overflow: hidden;
-  min-height: 6.1rem;
-  ${(props) =>
-    props.loading
-      ? "animation: skeleton-loading 1s linear infinite alternate"
-      : ""};
+  min-height: 7rem;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+
+  ${({ $loading }) =>
+    $loading ? "animation: skeleton-loading 1s linear infinite alternate;" : ""}
+
+  &:hover {
+    background: ${({ theme }) => theme.colours.surfaceContainerHighest};
+  }
 `;
 
-const HeaderStyles = css`
-  margin: 0 0 ${({ theme }) => theme.spacingSmall};
-`;
-
-const H2 = styled.h2`
-  ${HeaderStyles};
+const StatLabel = styled.h3`
+  margin: 0 0 4px;
   font-family: ${({ theme }) => theme.font.familyDefault};
-  font-size: ${({ theme }) => theme.font.size.header};
-  font-weight: 100;
+  font-size: ${({ theme }) => theme.font.size.xsmall};
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colours.onSurfaceVariant};
 `;
 
-const H3 = styled.h3`
-  margin: 0;
+const PlayerName = styled.h2`
+  margin: 0 0 4px;
   font-family: ${({ theme }) => theme.font.headerDefault};
-  letter-spacing: 1px;
-  font-weight: 100;
+  font-style: italic;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colours.onSurface};
+  line-height: 1.1;
 `;
 
-const Value = styled.h3`
-  color: ${({ theme }) => theme.colours.green};
+const StatValue = styled.p`
+  color: ${({ theme }) => theme.colours.secondary};
+  font-family: ${({ theme }) => theme.font.headerDefault};
+  font-weight: 700;
+  font-size: 1.1rem;
   margin: 0;
+`;
+
+const StyledLink = styled(Link)`
+  color: ${({ theme }) => theme.colours.onSurface};
+  text-decoration: none;
+
+  &:hover {
+    color: ${({ theme }) => theme.colours.primary};
+    text-decoration: none;
+  }
 `;
 
 const ImageContainer = styled.div`
   position: absolute;
-  bottom: -90px;
-  right: 0;
+  bottom: -50px;
+  right: -8px;
   pointer-events: none;
+  opacity: 0.35;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
     display: none;

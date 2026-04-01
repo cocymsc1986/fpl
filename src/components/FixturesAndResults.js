@@ -1,5 +1,5 @@
 import React from "react";
-import styled from 'styled-components/macro';
+import styled from "styled-components/macro";
 
 import { Fixtures } from "./Fixtures/Fixtures";
 import { UpcomingFixtures } from "./UpcomingFixtures";
@@ -7,7 +7,7 @@ import { UpcomingFixtures } from "./UpcomingFixtures";
 export const FixturesAndResults = ({ teamData, gw }) => {
   return (
     <StyledResults>
-      <Header>Fixtures & Results</Header>
+      <SectionLabel>Fixtures &amp; Results</SectionLabel>
       <Body>
         <Fixtures teamData={teamData} gw={gw} />
         <UpcomingFixtures teamData={teamData} />
@@ -22,11 +22,19 @@ const StyledResults = styled.div`
   padding: ${({ theme }) => theme.spacing};
 `;
 
-const Header = styled.h2`
-  margin-top: 0;
+const SectionLabel = styled.h2`
+  font-family: ${({ theme }) => theme.font.headerDefault};
+  font-style: italic;
+  font-weight: 700;
+  font-size: ${({ theme }) => theme.font.size.subheader};
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colours.onSurface};
+  margin: 0 0 ${({ theme }) => theme.spacingSmall};
+  letter-spacing: 0.03em;
 `;
 
 const Body = styled.section`
   display: flex;
   flex-flow: wrap;
+  gap: ${({ theme }) => theme.spacing};
 `;
