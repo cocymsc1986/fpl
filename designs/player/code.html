@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Player Profile - Mohamed Salah</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "outline": "#767575",
+                        "inverse-surface": "#fbf9f8",
+                        "inverse-primary": "#854984",
+                        "on-primary-container": "#400743",
+                        "surface": "#0e0e0e",
+                        "on-tertiary-fixed": "#39000e",
+                        "surface-container-low": "#131313",
+                        "primary": "#fdb4f8",
+                        "on-surface-variant": "#acabaa",
+                        "tertiary-dim": "#e70051",
+                        "secondary": "#00fd84",
+                        "inverse-on-surface": "#555555",
+                        "on-background": "#ffffff",
+                        "on-tertiary-container": "#000000",
+                        "secondary-container": "#006d35",
+                        "on-tertiary": "#480014",
+                        "surface-dim": "#0e0e0e",
+                        "tertiary": "#ff6e85",
+                        "primary-fixed": "#fdb4f8",
+                        "secondary-fixed": "#00fd84",
+                        "on-primary-fixed": "#501852",
+                        "tertiary-fixed-dim": "#ff788c",
+                        "on-secondary-container": "#e3ffe4",
+                        "background": "#0e0e0e",
+                        "primary-dim": "#eea6e9",
+                        "surface-tint": "#fdb4f8",
+                        "outline-variant": "#484848",
+                        "error-container": "#a70138",
+                        "secondary-fixed-dim": "#00ed7b",
+                        "on-secondary-fixed-variant": "#006631",
+                        "surface-bright": "#2c2c2c",
+                        "on-primary-fixed-variant": "#713771",
+                        "error-dim": "#d73357",
+                        "on-secondary": "#005b2b",
+                        "error": "#ff6e84",
+                        "on-error-container": "#ffb2b9",
+                        "secondary-dim": "#00ed7b",
+                        "tertiary-container": "#fe215f",
+                        "surface-container-highest": "#252626",
+                        "on-primary": "#662d67",
+                        "surface-container-lowest": "#000000",
+                        "primary-container": "#ce89ca",
+                        "on-surface": "#ffffff",
+                        "surface-container-high": "#1f2020",
+                        "surface-container": "#191a1a",
+                        "primary-fixed-dim": "#eea6e9",
+                        "on-tertiary-fixed-variant": "#780026",
+                        "surface-variant": "#252626",
+                        "on-secondary-fixed": "#004620",
+                        "tertiary-fixed": "#ff909e",
+                        "on-error": "#490013"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(19, 19, 19, 0.7);
+            backdrop-filter: blur(12px);
+        }
+        .stat-radar {
+            clip-path: polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_20px_rgba(253,180,248,0.1)] flex items-center justify-between px-6 h-16">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-neutral-400">arrow_back</span>
+<span class="text-xl font-black italic text-[#fdb4f8] tracking-tighter font-headline uppercase">STADIUM PULSE</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-neutral-400">search</span>
+<span class="material-symbols-outlined text-neutral-400">more_vert</span>
+</div>
+</nav>
+<main class="pt-16 pb-24">
+<!-- Hero Section -->
+<section class="relative h-[397px] overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-10"></div>
+<img alt="Mohamed Salah Hero" class="w-full h-full object-cover object-top opacity-60" data-alt="dramatic wide shot of a world-class professional soccer player celebrating in a stadium under bright floodlights with dark atmospheric background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7b4P2JvttdqcSi_xSzneqmnockI3umOfZlvW7cu-mCaxMe-iYVm_DLwyhS_u_G8wXW8epx9QJPpeLmAOvNIu7elTrqVNVG6YHu_3ROteoSi2V8YTHLwY5vRhTqo9_Tg4qibu_sh66MYIjUtuMj-TYCTwrfPVteZGg60C1NOKnwMWb_Ga1VzKlNTUy8QKPUVpDHOD2AwMTdPXNf4xxCNX0ouh2-gUUBVFoBfShkXLLX42D6nNXKifeAmS3dZNjh8BQbWwJogXdC5s"/>
+<div class="absolute bottom-0 left-0 w-full p-6 z-20">
+<div class="flex flex-col gap-1">
+<span class="font-headline font-bold tracking-widest text-primary text-sm uppercase">LIVERPOOL FC • MID</span>
+<h1 class="font-headline text-5xl font-black tracking-tighter uppercase leading-none italic">M. SALAH</h1>
+<div class="flex items-center gap-3 mt-2">
+<div class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold font-headline tracking-wider">£12.7m</div>
+<div class="bg-surface-container-highest text-primary px-3 py-1 rounded-full text-xs font-bold font-headline tracking-wider">32% TSB</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Stats Grid -->
+<section class="px-6 -mt-8 relative z-30 space-y-4">
+<div class="grid grid-cols-2 gap-4">
+<!-- Main Stat Card -->
+<div class="col-span-2 bg-surface-container-low p-6 rounded-2xl flex justify-between items-center shadow-xl">
+<div class="space-y-1">
+<span class="text-on-surface-variant text-[10px] font-bold tracking-widest uppercase">Total Points</span>
+<div class="text-5xl font-headline font-black text-primary italic">184</div>
+</div>
+<div class="text-right space-y-1">
+<span class="text-on-surface-variant text-[10px] font-bold tracking-widest uppercase">Form</span>
+<div class="flex items-center gap-2">
+<span class="text-3xl font-headline font-bold text-secondary">8.4</span>
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+</div>
+</div>
+<!-- Attribute Radar Chart Area -->
+<div class="col-span-2 md:col-span-1 bg-surface-container-low p-6 rounded-2xl relative overflow-hidden group">
+<h3 class="font-headline text-xs font-bold tracking-widest text-on-surface-variant uppercase mb-6">Performance Radar</h3>
+<div class="relative w-full aspect-square flex items-center justify-center">
+<!-- Simulated Radar Chart -->
+<div class="absolute inset-0 border border-white/5 stat-radar opacity-20 bg-primary/10"></div>
+<div class="absolute inset-4 border border-white/10 stat-radar opacity-30"></div>
+<div class="absolute inset-10 border border-white/10 stat-radar opacity-40"></div>
+<div class="absolute w-[80%] h-[80%] bg-primary/30 stat-radar backdrop-blur-sm border-2 border-primary shadow-[0_0_30px_rgba(253,180,248,0.2)]"></div>
+<!-- Labels -->
+<div class="absolute top-0 font-headline text-[10px] font-black text-on-surface-variant">xG</div>
+<div class="absolute top-[20%] right-0 font-headline text-[10px] font-black text-on-surface-variant">GOALS</div>
+<div class="absolute bottom-[10%] right-[10%] font-headline text-[10px] font-black text-on-surface-variant">xA</div>
+<div class="absolute bottom-0 font-headline text-[10px] font-black text-on-surface-variant">ASSISTS</div>
+<div class="absolute bottom-[10%] left-[10%] font-headline text-[10px] font-black text-on-surface-variant">KEY PASS</div>
+<div class="absolute top-[20%] left-0 font-headline text-[10px] font-black text-on-surface-variant">DRIBBLES</div>
+</div>
+</div>
+<!-- Data Points Bento -->
+<div class="col-span-2 md:col-span-1 grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-5 rounded-2xl border-l-4 border-secondary">
+<span class="text-[10px] font-bold tracking-widest text-on-surface-variant uppercase block mb-2">ICT Index</span>
+<span class="text-2xl font-headline font-bold">12.4</span>
+</div>
+<div class="bg-surface-container-low p-5 rounded-2xl border-l-4 border-primary">
+<span class="text-[10px] font-bold tracking-widest text-on-surface-variant uppercase block mb-2">VAPM</span>
+<span class="text-2xl font-headline font-bold">0.68</span>
+</div>
+<div class="bg-surface-container-low p-5 rounded-2xl border-l-4 border-tertiary">
+<span class="text-[10px] font-bold tracking-widest text-on-surface-variant uppercase block mb-2">Inj. Risk</span>
+<span class="text-2xl font-headline font-bold">Low</span>
+</div>
+<div class="bg-surface-container-low p-5 rounded-2xl border-l-4 border-outline-variant">
+<span class="text-[10px] font-bold tracking-widest text-on-surface-variant uppercase block mb-2">Minutes</span>
+<span class="text-2xl font-headline font-bold text-on-surface-variant">2,140</span>
+</div>
+</div>
+</div>
+<!-- Fixtures Section -->
+<div class="bg-surface-container-low rounded-2xl overflow-hidden">
+<div class="p-6 pb-2 border-b border-white/5">
+<h3 class="font-headline text-xs font-bold tracking-widest text-on-surface-variant uppercase">Next 5 Gameweeks</h3>
+</div>
+<div class="flex divide-x divide-white/5">
+<!-- GW 24 -->
+<div class="flex-1 p-4 text-center space-y-2">
+<span class="text-[10px] font-bold text-on-surface-variant opacity-60">GW24</span>
+<div class="font-headline font-black text-lg italic">BUR</div>
+<div class="w-full h-1 bg-secondary rounded-full"></div>
+<span class="text-[9px] font-bold text-secondary uppercase">H</span>
+</div>
+<!-- GW 25 -->
+<div class="flex-1 p-4 text-center space-y-2">
+<span class="text-[10px] font-bold text-on-surface-variant opacity-60">GW25</span>
+<div class="font-headline font-black text-lg italic">BRE</div>
+<div class="w-full h-1 bg-secondary rounded-full"></div>
+<span class="text-[9px] font-bold text-secondary uppercase">A</span>
+</div>
+<!-- GW 26 -->
+<div class="flex-1 p-4 text-center space-y-2 bg-white/5">
+<span class="text-[10px] font-bold text-on-surface-variant opacity-60">GW26</span>
+<div class="font-headline font-black text-lg italic">LUT</div>
+<div class="w-full h-1 bg-secondary-dim rounded-full"></div>
+<span class="text-[9px] font-bold text-secondary-dim uppercase">H</span>
+</div>
+<!-- GW 27 -->
+<div class="flex-1 p-4 text-center space-y-2">
+<span class="text-[10px] font-bold text-on-surface-variant opacity-60">GW27</span>
+<div class="font-headline font-black text-lg italic">NFO</div>
+<div class="w-full h-1 bg-primary-container rounded-full"></div>
+<span class="text-[9px] font-bold text-primary-container uppercase">A</span>
+</div>
+<!-- GW 28 -->
+<div class="flex-1 p-4 text-center space-y-2">
+<span class="text-[10px] font-bold text-on-surface-variant opacity-60">GW28</span>
+<div class="font-headline font-black text-lg italic">MCI</div>
+<div class="w-full h-1 bg-tertiary-dim rounded-full"></div>
+<span class="text-[9px] font-bold text-tertiary-dim uppercase">H</span>
+</div>
+</div>
+</div>
+<!-- News/Updates -->
+<div class="bg-surface-container-low p-6 rounded-2xl">
+<h3 class="font-headline text-xs font-bold tracking-widest text-on-surface-variant uppercase mb-4">Latest Insights</h3>
+<div class="space-y-4">
+<div class="flex gap-4 items-start">
+<div class="bg-secondary-container/20 p-2 rounded-xl">
+<span class="material-symbols-outlined text-secondary">verified</span>
+</div>
+<div>
+<p class="text-sm font-medium leading-relaxed">Salah is currently the highest-performing asset for xGI over the last 4 gameweeks (1.2 per 90).</p>
+<span class="text-[10px] text-on-surface-variant font-bold uppercase mt-1 block">2 HOURS AGO • SCOUT REPORT</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Contextual FAB -->
+<button class="fixed bottom-24 right-6 bg-primary text-on-primary p-4 rounded-xl shadow-[0_8px_32px_rgba(253,180,248,0.4)] flex items-center justify-center group active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person_add</span>
+<span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 font-headline font-bold text-sm ml-0 group-hover:ml-2 uppercase tracking-wider">Add to Squad</span>
+</button>
+<!-- Bottom Navigation Shell -->
+<footer class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-2 pb-6 bg-[#131313]/90 backdrop-blur-lg rounded-t-2xl shadow-[0_-4px_24px_rgba(0,0,0,0.8)] z-50">
+<div class="flex flex-col items-center justify-center text-neutral-500 px-4 py-1.5 active:translate-y-0.5 transition-all hover:text-[#ce89ca]">
+<span class="material-symbols-outlined">home</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold tracking-wider uppercase">HOME</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-[#fdb4f8]/10 text-[#fdb4f8] rounded-xl px-4 py-1.5 shadow-[0_0_15px_rgba(253,180,248,0.2)] active:translate-y-0.5 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold tracking-wider uppercase">PLAYERS</span>
+</div>
+<div class="flex flex-col items-center justify-center text-neutral-500 px-4 py-1.5 active:translate-y-0.5 transition-all hover:text-[#ce89ca]">
+<span class="material-symbols-outlined">shield</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold tracking-wider uppercase">TEAM</span>
+</div>
+<div class="flex flex-col items-center justify-center text-neutral-500 px-4 py-1.5 active:translate-y-0.5 transition-all hover:text-[#ce89ca]">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold tracking-wider uppercase">STATS</span>
+</div>
+</footer>
+</body></html>
