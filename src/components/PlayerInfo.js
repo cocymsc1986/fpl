@@ -351,19 +351,22 @@ const HeroInner = styled.div`
   min-height: 240px;
   display: flex;
   align-items: flex-end;
-  overflow: hidden;
 `;
 
 const HeroImage = styled.img`
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: -30px;
   height: 100%;
   max-height: 280px;
   width: auto;
   object-fit: contain;
   pointer-events: none;
   z-index: 0;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
+    right: 25px;
+  }
 `;
 
 const HeroOverlay = styled.div`
