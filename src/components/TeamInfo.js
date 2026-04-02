@@ -66,21 +66,24 @@ export const TeamInfo = ({ id }) => {
   );
 
   return (
-    <PageWrapper>
-      {/* Team Hero */}
-      <TeamHero>
-        <Badge
-          src={`https://resources.premierleague.com/premierleague/badges/t${team.code}.svg`}
-          alt={`${team.name} logo`}
-        />
-        <TeamName>{team.name}</TeamName>
-      </TeamHero>
+    <>
+      {/* Full-width team hero */}
+      <TeamHeroBackground>
+        <TeamHeroInner>
+          <Badge
+            src={`https://resources.premierleague.com/premierleague/badges/t${team.code}.svg`}
+            alt={`${team.name} logo`}
+          />
+          <TeamName>{team.name}</TeamName>
+        </TeamHeroInner>
+      </TeamHeroBackground>
 
-      {/* Fixture strip */}
-      <TeamFixtures id={id} />
+      <PageWrapper>
+        {/* Fixture strip */}
+        <TeamFixtures id={id} />
 
-      {/* Player table */}
-      <Data>
+        {/* Player table */}
+        <Data>
         <Container>
           <SectionLabel>Squad Stats</SectionLabel>
           <TableWrapper>
@@ -117,7 +120,8 @@ export const TeamInfo = ({ id }) => {
           </TableWrapper>
         </Container>
       </Data>
-    </PageWrapper>
+      </PageWrapper>
+    </>
   );
 };
 
@@ -128,17 +132,23 @@ const PageWrapper = styled.div`
   margin: 0 auto;
 `;
 
-const TeamHero = styled.header`
-  display: flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacing};
-  padding: ${({ theme }) => theme.spacing};
-  padding-bottom: ${({ theme }) => theme.spacingValue * 2.5}px;
+const TeamHeroBackground = styled.header`
+  width: 100%;
   background: linear-gradient(
     to bottom,
     ${({ theme }) => theme.colours.surfaceContainerHigh} 0%,
     ${({ theme }) => theme.colours.surface} 100%
   );
+`;
+
+const TeamHeroInner = styled.div`
+  max-width: ${({ theme }) => theme.maxWidth};
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing};
+  padding: ${({ theme }) => theme.spacing};
+  padding-bottom: ${({ theme }) => theme.spacingValue * 2.5}px;
 `;
 
 const Badge = styled.img`

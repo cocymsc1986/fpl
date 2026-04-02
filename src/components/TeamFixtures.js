@@ -98,7 +98,7 @@ const FixtureStrip = styled.div`
   display: flex;
   overflow-x: auto;
   gap: ${({ theme }) => theme.spacingSmall};
-  padding: ${({ theme }) => theme.spacingSmall} 0;
+  padding: ${({ theme }) => theme.spacingSmall};
   background: ${({ theme }) => theme.colours.surfaceContainerLow};
   border-radius: 8px;
   scrollbar-width: none;

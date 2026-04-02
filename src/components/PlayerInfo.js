@@ -215,38 +215,40 @@ export const PlayerInfo = ({ id }) => {
       ];
 
   return (
-    <PageWrapper>
-      {/* Hero */}
+    <>
+      {/* Full-width hero */}
       <Hero>
         <HeroImage
           src={`https://resources.premierleague.com/premierleague/photos/players/110x140/p${code}.png`}
           alt={web_name}
         />
         <HeroOverlay />
-        <HeroContent>
-          <HeroMeta>
-            <MetaLabel>
-              <StyledTeamLink to={`/team/${team}`}>
-                <TeamBadgeSmall
-                  src={`https://resources.premierleague.com/premierleague/badges/t${team_code}.svg`}
-                  alt="team"
-                />
-              </StyledTeamLink>
-              {position}
-            </MetaLabel>
-          </HeroMeta>
-          <HeroName>
-            {squad_number && `${squad_number}. `}
-            {first_name} {second_name}
-          </HeroName>
-          <BadgeRow>
-            <PriceBadge>£{now_cost / 10}m</PriceBadge>
-            <TSBBadge>{selected_by_percent}% TSB</TSBBadge>
-            {status !== "a" && (
-              <StatusBadge>{chance_of_playing_this_round || status}</StatusBadge>
-            )}
-          </BadgeRow>
-        </HeroContent>
+        <HeroInner>
+          <HeroContent>
+            <HeroMeta>
+              <MetaLabel>
+                <StyledTeamLink to={`/team/${team}`}>
+                  <TeamBadgeSmall
+                    src={`https://resources.premierleague.com/premierleague/badges/t${team_code}.svg`}
+                    alt="team"
+                  />
+                </StyledTeamLink>
+                {position}
+              </MetaLabel>
+            </HeroMeta>
+            <HeroName>
+              {squad_number && `${squad_number}. `}
+              {first_name} {second_name}
+            </HeroName>
+            <BadgeRow>
+              <PriceBadge>£{now_cost / 10}m</PriceBadge>
+              <TSBBadge>{selected_by_percent}% TSB</TSBBadge>
+              {status !== "a" && (
+                <StatusBadge>{chance_of_playing_this_round || status}</StatusBadge>
+              )}
+            </BadgeRow>
+          </HeroContent>
+        </HeroInner>
       </Hero>
 
       {/* Stats Area */}
@@ -327,16 +329,11 @@ export const PlayerInfo = ({ id }) => {
           </NewsCard>
         )}
       </StatsArea>
-    </PageWrapper>
+    </>
   );
 };
 
 /* ─── Styled Components ─────────────────────────────────────── */
-
-const PageWrapper = styled.section`
-  max-width: ${({ theme }) => theme.maxWidth};
-  margin: 0 auto;
-`;
 
 const Hero = styled.header`
   position: relative;
@@ -344,10 +341,17 @@ const Hero = styled.header`
   min-height: 240px;
   display: flex;
   align-items: flex-end;
-  padding: ${({ theme }) => theme.spacing};
   background: ${({ theme }) => theme.colours.surfaceContainerHigh};
   overflow: hidden;
-  box-sizing: border-box;
+`;
+
+const HeroInner = styled.div`
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: ${({ theme }) => theme.maxWidth};
+  margin: 0 auto;
+  padding: ${({ theme }) => theme.spacing};
 `;
 
 const HeroImage = styled.img`
@@ -380,8 +384,6 @@ const HeroOverlay = styled.div`
 `;
 
 const HeroContent = styled.div`
-  position: relative;
-  z-index: 2;
   max-width: 65%;
 `;
 
@@ -465,6 +467,8 @@ const StatusBadge = styled.span`
 `;
 
 const StatsArea = styled.div`
+  max-width: ${({ theme }) => theme.maxWidth};
+  margin: 0 auto;
   padding: ${({ theme }) => theme.spacing};
   display: flex;
   flex-direction: column;
