@@ -291,6 +291,14 @@ export const PlayerInfo = ({ id }) => {
         {/* Fixture strip */}
         <TeamFixtures id={team} />
 
+        {/* News */}
+        {news && (
+          <NewsCard>
+            <NewsTitle>Latest News</NewsTitle>
+            <NewsText>{news}</NewsText>
+          </NewsCard>
+        )}
+
         {/* Full stats list */}
         <FullStatsList>
           <StatListTitle>Full Stats</StatListTitle>
@@ -320,14 +328,6 @@ export const PlayerInfo = ({ id }) => {
             </StatRow>
           ))}
         </FullStatsList>
-
-        {/* News */}
-        {news && (
-          <NewsCard>
-            <NewsTitle>Latest News</NewsTitle>
-            <NewsText>{news}</NewsText>
-          </NewsCard>
-        )}
       </StatsArea>
     </>
   );
