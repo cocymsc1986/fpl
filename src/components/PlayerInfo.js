@@ -87,7 +87,7 @@ const RadarChart = ({ axes }) => {
         {/* Grid rings */}
         {gridRings.map((pts, i) => (
           <polygon
-            key={i}
+            key={`ring-${i * 0.25 + 0.25}`}
             points={pts}
             fill="none"
             stroke="rgba(255,255,255,0.08)"
@@ -95,11 +95,11 @@ const RadarChart = ({ axes }) => {
           />
         ))}
         {/* Axis lines */}
-        {axes.map((_, i) => {
+        {axes.map(({ label }, i) => {
           const [x, y] = getPoint(i, 1);
           return (
             <line
-              key={i}
+              key={`axis-${label}`}
               x1={cx}
               y1={cy}
               x2={x}
@@ -122,7 +122,7 @@ const RadarChart = ({ axes }) => {
           const [x, y] = getLabelPoint(i);
           return (
             <text
-              key={i}
+              key={`label-${label}`}
               x={x}
               y={y}
               textAnchor="middle"

@@ -261,15 +261,16 @@ const PlayerLink = styled(Link)`
   }
 `;
 
+const statusColor = ($status, theme) => {
+  if ($status === "a") return theme.colours.secondary;
+  if ($status === "d") return "#f5a623";
+  return theme.colours.tertiary;
+};
+
 const StatusDot = styled.span`
   display: inline-block;
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: ${({ $status, theme }) =>
-    $status === "a"
-      ? theme.colours.secondary
-      : $status === "d"
-      ? "#f5a623"
-      : theme.colours.tertiary};
+  background: ${({ $status, theme }) => statusColor($status, theme)};
 `;

@@ -1,5 +1,4 @@
-import { ThemeProvider, createGlobalStyle } from "styled-components/macro";
-import styled from "styled-components/macro";
+import styled, { ThemeProvider, createGlobalStyle } from "styled-components/macro";
 
 import { Header } from "../components/Header";
 import { theme as themeProperties } from "../styles/theme";

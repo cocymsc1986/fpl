@@ -1,7 +1,6 @@
 import React from "react";
 import { useRouteError } from "react-router-dom";
-import styled from "styled-components/macro";
-import { ThemeProvider } from "styled-components/macro";
+import styled, { ThemeProvider } from "styled-components/macro";
 import { theme } from "../styles/theme";
 
 export default function Error() {
