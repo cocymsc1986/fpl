@@ -163,13 +163,8 @@ const StyledLink = styled(Link)`
 `;
 
 const StyledFixtures = styled.div`
-  width: 100%;
-  margin-top: ${({ theme }) => theme.spacing};
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
-    width: 60%;
-    margin-top: 0;
-  }
+  flex: 3 1 0;
+  min-width: 0;
 `;
 
 const SectionHeader = styled.h3`

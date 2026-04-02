@@ -133,7 +133,12 @@ const TeamHero = styled.header`
   align-items: center;
   gap: ${({ theme }) => theme.spacing};
   padding: ${({ theme }) => theme.spacing};
-  background: ${({ theme }) => theme.colours.surfaceContainerHigh};
+  padding-bottom: ${({ theme }) => theme.spacingValue * 2.5}px;
+  background: linear-gradient(
+    to bottom,
+    ${({ theme }) => theme.colours.surfaceContainerHigh} 0%,
+    ${({ theme }) => theme.colours.surface} 100%
+  );
 `;
 
 const Badge = styled.img`

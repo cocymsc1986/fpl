@@ -365,11 +365,17 @@ const HeroImage = styled.img`
 const HeroOverlay = styled.div`
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to right,
-    ${({ theme }) => theme.colours.surface} 40%,
-    rgba(14, 14, 14, 0.2) 100%
-  );
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 40%,
+      ${({ theme }) => theme.colours.surface} 100%
+    ),
+    linear-gradient(
+      to right,
+      ${({ theme }) => theme.colours.surface} 40%,
+      rgba(14, 14, 14, 0.2) 100%
+    );
   z-index: 1;
 `;
 

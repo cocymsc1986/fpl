@@ -2,7 +2,6 @@ import { ThemeProvider, createGlobalStyle } from "styled-components/macro";
 import styled from "styled-components/macro";
 
 import { Header } from "../components/Header";
-import { BottomNav } from "../components/BottomNav";
 import { theme as themeProperties } from "../styles/theme";
 
 export const Layout = ({ children }) => {
@@ -11,14 +10,12 @@ export const Layout = ({ children }) => {
       <GlobalStyle />
       <Header />
       <Main>{children}</Main>
-      <BottomNav />
     </ThemeProvider>
   );
 };
 
 const Main = styled.main`
   padding-top: 64px;
-  padding-bottom: 80px;
   min-height: 100vh;
   background: ${({ theme }) => theme.colours.surface};
 `;

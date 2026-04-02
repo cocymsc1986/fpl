@@ -50,10 +50,12 @@ export const DataSection = () => {
   return (
     <>
       {gw && (
-        <GWBanner>
-          <GWLabel>Current Gameweek</GWLabel>
-          <GWNumber>GW{gw}</GWNumber>
-        </GWBanner>
+        <GWSection>
+          <GWBanner>
+            <GWLabel>Current Gameweek</GWLabel>
+            <GWNumber>GW{gw}</GWNumber>
+          </GWBanner>
+        </GWSection>
       )}
       <MostPopularContainer teamData={allTeams} />
       <HighestRatedContainer teamData={allTeams} />
@@ -62,9 +64,13 @@ export const DataSection = () => {
   );
 };
 
-const GWBanner = styled.div`
+const GWSection = styled.div`
   max-width: ${({ theme }) => theme.maxWidth};
   margin: ${({ theme }) => theme.spacingSmall} auto;
+  padding: 0 ${({ theme }) => theme.spacing};
+`;
+
+const GWBanner = styled.div`
   padding: 14px ${({ theme }) => theme.spacing};
   background: ${({ theme }) => theme.colours.surfaceContainerHigh};
   border-left: 4px solid ${({ theme }) => theme.colours.primary};

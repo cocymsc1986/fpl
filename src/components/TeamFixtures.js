@@ -91,7 +91,7 @@ export const TeamFixtures = ({ id }) => {
 const FixtureWrapper = styled.div`
   max-width: ${({ theme }) => theme.maxWidth};
   margin: 0 auto;
-  padding: 0 ${({ theme }) => theme.spacing};
+  padding: ${({ theme }) => theme.spacing};
 `;
 
 const FixtureStrip = styled.div`

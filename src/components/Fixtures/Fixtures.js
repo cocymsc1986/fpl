@@ -45,7 +45,7 @@ export const Fixtures = ({ teamData, gw }) => {
     });
   };
 
-  if (loading) return <Loader />;
+  if (loading && !data) return <Loader />;
   if (error) return `Error loading fixtures.`;
 
   const getKOTime = (date) => {
@@ -77,6 +77,7 @@ export const Fixtures = ({ teamData, gw }) => {
   return (
     <StyledFixtures>
       <Wrapper>
+        {loading && <LoadingOverlay><Loader /></LoadingOverlay>}
         <List>
           <Header>
             <tr>
@@ -139,21 +140,23 @@ const KOTime = styled.div`
 `;
 
 const StyledFixtures = styled.div`
-  width: 100%;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
-    width: 40%;
-  }
+  flex: 2 1 0;
+  min-width: 0;
 `;
 
 const Wrapper = styled.div`
-  @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
-    margin-right: ${({ theme }) => theme.spacing};
-  }
+  position: relative;
+`;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.large}) {
-    margin-right: ${({ theme }) => theme.spacingValue * 2}px;
-  }
+const LoadingOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: rgba(14, 14, 14, 0.7);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const List = styled.table`

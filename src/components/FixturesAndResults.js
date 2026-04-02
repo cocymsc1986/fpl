@@ -35,6 +35,11 @@ const SectionLabel = styled.h2`
 
 const Body = styled.section`
   display: flex;
-  flex-flow: wrap;
+  flex-direction: column;
   gap: ${({ theme }) => theme.spacing};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
 `;
