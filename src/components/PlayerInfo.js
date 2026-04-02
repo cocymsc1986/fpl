@@ -356,7 +356,7 @@ const HeroInner = styled.div`
 const HeroImage = styled.img`
   position: absolute;
   right: 0;
-  bottom: -30px;
+  bottom: -16px;
   height: 100%;
   max-height: 280px;
   width: auto;
@@ -365,7 +365,7 @@ const HeroImage = styled.img`
   z-index: 0;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
-    right: 25px;
+    right: 40px;
   }
 `;
 
