@@ -218,12 +218,12 @@ export const PlayerInfo = ({ id }) => {
     <>
       {/* Full-width hero */}
       <Hero>
-        <HeroImage
-          src={`https://resources.premierleague.com/premierleague/photos/players/110x140/p${code}.png`}
-          alt={web_name}
-        />
         <HeroOverlay />
         <HeroInner>
+          <HeroImage
+            src={`https://resources.premierleague.com/premierleague/photos/players/110x140/p${code}.png`}
+            alt={web_name}
+          />
           <HeroContent>
             <HeroMeta>
               <MetaLabel>
@@ -338,11 +338,7 @@ export const PlayerInfo = ({ id }) => {
 const Hero = styled.header`
   position: relative;
   width: 100%;
-  min-height: 240px;
-  display: flex;
-  align-items: flex-end;
   background: ${({ theme }) => theme.colours.surfaceContainerHigh};
-  overflow: hidden;
 `;
 
 const HeroInner = styled.div`
@@ -352,6 +348,10 @@ const HeroInner = styled.div`
   max-width: ${({ theme }) => theme.maxWidth};
   margin: 0 auto;
   padding: ${({ theme }) => theme.spacing};
+  min-height: 240px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
 `;
 
 const HeroImage = styled.img`
