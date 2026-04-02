@@ -62,7 +62,7 @@ export const UpcomingFixtures = ({ teamData }) => {
     setDifficultyType(difficultyType === "easiest" ? "hardest" : "easiest");
   };
 
-  const { teams } = teamData;
+  const teams = teamData?.teams;
 
   if (loading || !teams) return <Loader />;
 

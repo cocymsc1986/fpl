@@ -1,28 +1,59 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { Link, useLocation } from "react-router-dom";
-
-const navItems = [
-  { label: "HOME", icon: "home", to: "/", activeOn: (p) => p === "/" },
-  { label: "PLAYERS", icon: "groups", to: "/", activeOn: (p) => p.startsWith("/player") },
-  { label: "TEAM", icon: "shield", to: "/", activeOn: (p) => p.startsWith("/team") },
-  { label: "STATS", icon: "leaderboard", to: "/", activeOn: () => false },
-];
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export const BottomNav = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  const focusSearch = () => {
+    const el = document.getElementById("player-search");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      el.focus();
+    }
+  };
+
+  const handlePlayersClick = (e) => {
+    e.preventDefault();
+    if (pathname !== "/") {
+      navigate("/");
+      setTimeout(focusSearch, 200);
+    } else {
+      focusSearch();
+    }
+  };
 
   return (
     <NavBar>
-      {navItems.map(({ label, icon, to, activeOn }) => {
-        const isActive = activeOn(pathname);
-        return (
-          <NavItem key={label} to={to} $active={isActive}>
-            <span className="material-symbols-outlined">{icon}</span>
-            <NavLabel>{label}</NavLabel>
-          </NavItem>
-        );
-      })}
+      <NavItem to="/" $active={pathname === "/"}>
+        <span className="material-symbols-outlined">home</span>
+        <NavLabel>Home</NavLabel>
+      </NavItem>
+
+      <NavButton
+        onClick={handlePlayersClick}
+        $active={pathname.startsWith("/player")}
+      >
+        <span className="material-symbols-outlined">groups</span>
+        <NavLabel>Players</NavLabel>
+      </NavButton>
+
+      <NavItem
+        to="/"
+        $active={pathname.startsWith("/team")}
+      >
+        <span className="material-symbols-outlined">shield</span>
+        <NavLabel>Teams</NavLabel>
+      </NavItem>
+
+      <NavItem
+        to="/"
+        $active={false}
+      >
+        <span className="material-symbols-outlined">leaderboard</span>
+        <NavLabel>Stats</NavLabel>
+      </NavItem>
     </NavBar>
   );
 };
@@ -42,7 +73,7 @@ const NavBar = styled.nav`
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 `;
 
-const NavItem = styled(Link)`
+const navItemStyles = ({ $active, theme }) => `
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -52,12 +83,9 @@ const NavItem = styled(Link)`
   text-decoration: none;
   transition: background 0.15s ease, color 0.15s ease;
   padding: 8px 4px;
-
-  background: ${({ $active }) => ($active ? "rgba(253, 180, 248, 0.1)" : "transparent")};
-  color: ${({ $active, theme }) =>
-    $active ? theme.colours.primary : theme.colours.onSurfaceVariant};
-  box-shadow: ${({ $active }) =>
-    $active ? "0 -2px 12px rgba(253, 180, 248, 0.2)" : "none"};
+  background: ${$active ? "rgba(253, 180, 248, 0.1)" : "transparent"};
+  color: ${$active ? theme.colours.primary : theme.colours.onSurfaceVariant};
+  box-shadow: ${$active ? "0 -2px 12px rgba(253, 180, 248, 0.2)" : "none"};
 
   .material-symbols-outlined {
     font-size: 22px;
@@ -65,9 +93,20 @@ const NavItem = styled(Link)`
 
   &:hover {
     background: rgba(253, 180, 248, 0.07);
-    color: ${({ theme }) => theme.colours.primary};
+    color: ${theme.colours.primary};
     text-decoration: none;
   }
+`;
+
+const NavItem = styled(Link)`
+  ${(props) => navItemStyles(props)}
+`;
+
+const NavButton = styled.button`
+  ${(props) => navItemStyles(props)}
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
 `;
 
 const NavLabel = styled.span`

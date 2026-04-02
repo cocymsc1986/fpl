@@ -4,6 +4,7 @@ import styled from "styled-components/macro";
 import { HighestRated } from "./HighestRated";
 
 export const HighestRatedContainer = ({ teamData }) => {
+  if (!teamData) return null;
   const { teams } = teamData;
 
   return (

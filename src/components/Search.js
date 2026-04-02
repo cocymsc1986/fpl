@@ -46,6 +46,7 @@ export const Search = () => {
           <SearchWrapper>
             <SearchIcon className="material-symbols-outlined">search</SearchIcon>
             <SearchInput
+              id="player-search"
               placeholder="Search for a player..."
               onChange={(e) => executeSearch(client, e.target.value)}
               value={term}

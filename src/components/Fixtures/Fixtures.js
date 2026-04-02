@@ -68,6 +68,7 @@ export const Fixtures = ({ teamData, gw }) => {
     );
   };
 
+  if (!teamData) return null;
   const {
     fixtures: { fixtures, id },
   } = data;

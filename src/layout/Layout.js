@@ -10,9 +10,7 @@ export const Layout = ({ children }) => {
     <ThemeProvider theme={themeProperties}>
       <GlobalStyle />
       <Header />
-      <Main>
-        <div>{children}</div>
-      </Main>
+      <Main>{children}</Main>
       <BottomNav />
     </ThemeProvider>
   );
@@ -30,14 +28,25 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  html {
+    margin: 0;
+    padding: 0;
+  }
+
   body {
     margin: 0;
+    padding: 0;
     background: ${({ theme }) => theme.colours.surface};
     font-family: ${({ theme }) => theme.font.familyDefault};
     font-size: ${({ theme }) => theme.font.size.body};
     color: ${({ theme }) => theme.colours.onSurface};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    margin: 0;
+    padding: 0;
   }
 
   a {
