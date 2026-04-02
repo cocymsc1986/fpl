@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stadium Pulse | Fantasy Stats</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "outline": "#767575",
+              "inverse-surface": "#fbf9f8",
+              "inverse-primary": "#854984",
+              "on-primary-container": "#400743",
+              "surface": "#0e0e0e",
+              "on-tertiary-fixed": "#39000e",
+              "surface-container-low": "#131313",
+              "primary": "#fdb4f8",
+              "on-surface-variant": "#acabaa",
+              "tertiary-dim": "#e70051",
+              "secondary": "#00fd84",
+              "inverse-on-surface": "#555555",
+              "on-background": "#ffffff",
+              "on-tertiary-container": "#000000",
+              "secondary-container": "#006d35",
+              "on-tertiary": "#480014",
+              "surface-dim": "#0e0e0e",
+              "tertiary": "#ff6e85",
+              "primary-fixed": "#fdb4f8",
+              "secondary-fixed": "#00fd84",
+              "on-primary-fixed": "#501852",
+              "tertiary-fixed-dim": "#ff788c",
+              "on-secondary-container": "#e3ffe4",
+              "background": "#0e0e0e",
+              "primary-dim": "#eea6e9",
+              "surface-tint": "#fdb4f8",
+              "outline-variant": "#484848",
+              "error-container": "#a70138",
+              "secondary-fixed-dim": "#00ed7b",
+              "on-secondary-fixed-variant": "#006631",
+              "surface-bright": "#2c2c2c",
+              "on-primary-fixed-variant": "#713771",
+              "error-dim": "#d73357",
+              "on-secondary": "#005b2b",
+              "error": "#ff6e84",
+              "on-error-container": "#ffb2b9",
+              "secondary-dim": "#00ed7b",
+              "tertiary-container": "#fe215f",
+              "surface-container-highest": "#252626",
+              "on-primary": "#662d67",
+              "surface-container-lowest": "#000000",
+              "primary-container": "#ce89ca",
+              "on-surface": "#ffffff",
+              "surface-container-high": "#1f2020",
+              "surface-container": "#191a1a",
+              "primary-fixed-dim": "#eea6e9",
+              "on-tertiary-fixed-variant": "#780026",
+              "surface-variant": "#252626",
+              "on-secondary-fixed": "#004620",
+              "tertiary-fixed": "#ff909e",
+              "on-error": "#490013"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_20px_rgba(253,180,248,0.1)] flex items-center justify-between px-6 h-16">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#fdb4f8] active:scale-95 duration-200">menu</span>
+<h1 class="text-xl font-black italic text-[#fdb4f8] tracking-tighter font-headline uppercase">STADIUM PULSE</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#fdb4f8] active:scale-95 duration-200">search</span>
+</div>
+</header>
+<main class="pt-20 pb-28 px-4 space-y-8 max-w-md mx-auto">
+<!-- Search Section -->
+<section class="relative">
+<div class="bg-surface-container-lowest border-2 border-transparent focus-within:border-primary transition-all rounded-xl flex items-center px-4 py-3 gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-on-surface-variant w-full font-label" placeholder="Search elite performers..." type="text"/>
+</div>
+</section>
+<!-- Next Gameweek Countdown Card -->
+<section class="relative overflow-hidden rounded-2xl bg-surface-container-low p-6 border-l-4 border-primary">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+<div class="relative z-10 flex justify-between items-end">
+<div>
+<span class="font-headline font-bold text-xs tracking-[0.2em] text-on-surface-variant uppercase">Deadline Approach</span>
+<h2 class="font-headline text-4xl font-black italic mt-1 leading-none">GW 24</h2>
+</div>
+<div class="flex gap-3 text-right">
+<div>
+<div class="font-headline text-2xl font-bold">14</div>
+<div class="font-label text-[10px] uppercase tracking-wider text-on-surface-variant">HRS</div>
+</div>
+<div class="text-primary font-headline text-2xl font-bold">:</div>
+<div>
+<div class="font-headline text-2xl font-bold">42</div>
+<div class="font-label text-[10px] uppercase tracking-wider text-on-surface-variant">MIN</div>
+</div>
+</div>
+</div>
+<div class="mt-4 flex gap-2 overflow-x-auto no-scrollbar py-2">
+<div class="bg-primary/10 text-primary border border-primary/20 rounded-full px-4 py-1 text-[10px] font-bold font-headline whitespace-nowrap">CITY v ARS</div>
+<div class="bg-surface-container-highest text-on-surface-variant rounded-full px-4 py-1 text-[10px] font-bold font-headline whitespace-nowrap">LIV v CHE</div>
+<div class="bg-surface-container-highest text-on-surface-variant rounded-full px-4 py-1 text-[10px] font-bold font-headline whitespace-nowrap">MUN v TOT</div>
+</div>
+</section>
+<!-- Top Performers Carousel -->
+<section class="space-y-4">
+<div class="flex justify-between items-center px-2">
+<h3 class="font-headline text-lg font-bold tracking-tight uppercase">Top Performers</h3>
+<span class="text-primary text-xs font-bold font-headline tracking-widest cursor-pointer">VIEW ALL</span>
+</div>
+<!-- Bento-style Player Cards -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Player 1 -->
+<div class="bg-surface-container-low rounded-2xl overflow-hidden relative group transition-all duration-300 hover:bg-surface-container-high">
+<div class="h-40 overflow-hidden relative">
+<img alt="Professional football player in action" class="w-full h-full object-cover scale-110 group-hover:scale-125 transition-transform duration-500" data-alt="Close-up of a dynamic professional football player during a match, intense focus, stadium lighting at night, high energy sports photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu8hQ8BUN9rlQhIgcAmwTb6T4qwcs8-yJ2n41vWCIx7_7tw9kT4nw7x6LJ1EWUlQUwcVqO1qJfG4TVf34T3vC-wyGD_tGYxABOg_p24UZWm6GQXOUvZ3rqhHHtNCYGZMNXPbr5cmkjRAXHa3FnBiYbtRx3sCegRgxTBEaGSy0y58DukomUe22JX4m5udmDZWGd6KMGKIJ0DNBPRjteBsW-H6tGzjEsaAUVut0DqeEeRwPrNtemxaNorySFEC9qADXk8WT504NYm8c"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low to-transparent"></div>
+<div class="absolute top-2 left-2 bg-secondary text-on-secondary px-2 py-0.5 rounded text-[10px] font-black italic">IN FORM</div>
+</div>
+<div class="p-4 relative -mt-8">
+<div class="font-headline font-black text-xl leading-tight uppercase tracking-tighter">Haaland</div>
+<div class="flex justify-between items-center mt-2">
+<span class="text-[10px] font-bold text-on-surface-variant font-label uppercase">Points</span>
+<span class="text-secondary font-headline font-black">12.4</span>
+</div>
+</div>
+</div>
+<!-- Player 2 -->
+<div class="bg-surface-container-low rounded-2xl overflow-hidden relative group transition-all duration-300 hover:bg-surface-container-high">
+<div class="h-40 overflow-hidden relative">
+<img alt="Footballer celebrating a goal" class="w-full h-full object-cover scale-110 group-hover:scale-125 transition-transform duration-500" data-alt="Athletic soccer player celebrating under bright stadium lights, cinematic depth of field, dramatic night atmosphere, vibrant green pitch background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKapbwOHDvcyXEThmweWKTkCswmLAceaXZlnT8lCsynjsa1NDn-FhkCs0Kfbn2F33hYsPUwqFCIT6XhS5KY_IM3xKRTVISKmulMKFKsZRl5IqTDiViRIjrZAMucbKQRfY7vRLcYMjlMxpd81cXEpjUd9G-Pyi0ubtDl_IPw9tpsSWwrRsftJf2wpq_DabBQarG_d8_ozyVCpyNYF9FsuPSuIJHayUNUa8skg0r3sSgt5dKRBgu_UWdPuq2f6aCTWAjeA1NXr_sczM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low to-transparent"></div>
+<div class="absolute top-2 left-2 bg-primary text-on-primary px-2 py-0.5 rounded text-[10px] font-black italic">CLUTCH</div>
+</div>
+<div class="p-4 relative -mt-8">
+<div class="font-headline font-black text-xl leading-tight uppercase tracking-tighter">Saka</div>
+<div class="flex justify-between items-center mt-2">
+<span class="text-[10px] font-bold text-on-surface-variant font-label uppercase">Points</span>
+<span class="text-primary font-headline font-black">9.8</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Leaderboard Section -->
+<section class="bg-surface-container-low rounded-3xl p-6 space-y-6">
+<h3 class="font-headline text-lg font-bold tracking-tight uppercase border-b border-white/5 pb-4">Transfer Trends</h3>
+<div class="space-y-4">
+<!-- Stat Row 1 -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-headline font-black text-on-surface-variant">01</div>
+<div>
+<div class="font-headline font-bold text-sm tracking-wide">De Bruyne</div>
+<div class="text-[10px] font-bold text-secondary font-label uppercase">+120k Transfers</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+<!-- Stat Row 2 -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-headline font-black text-on-surface-variant">02</div>
+<div>
+<div class="font-headline font-bold text-sm tracking-wide">Salah</div>
+<div class="text-[10px] font-bold text-secondary font-label uppercase">+85k Transfers</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+<!-- Stat Row 3 -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-headline font-black text-on-surface-variant">03</div>
+<div>
+<div class="font-headline font-bold text-sm tracking-wide">Son</div>
+<div class="text-[10px] font-bold text-tertiary font-label uppercase">-42k Transfers</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">trending_down</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-2 pb-6 bg-[#131313]/90 backdrop-blur-lg shadow-[0_-4px_24px_rgba(0,0,0,0.8)] rounded-t-2xl z-50">
+<a class="flex flex-col items-center justify-center bg-[#fdb4f8]/10 text-[#fdb4f8] rounded-xl px-4 py-1.5 shadow-[0_0_15px_rgba(253,180,248,0.2)] active:translate-y-0.5 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold tracking-wider uppercase">HOME</span>
+</a>
+<a class="flex flex-col items-center justify-center text-neutral-500 px-4 py-1.5 hover:text-[#ce89ca] active:translate-y-0.5 transition-all" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold tracking-wider uppercase">PLAYERS</span>
+</a>
+<a class="flex flex-col items-center justify-center text-neutral-500 px-4 py-1.5 hover:text-[#ce89ca] active:translate-y-0.5 transition-all" href="#">
+<span class="material-symbols-outlined">shield</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold tracking-wider uppercase">TEAM</span>
+</a>
+<a class="flex flex-col items-center justify-center text-neutral-500 px-4 py-1.5 hover:text-[#ce89ca] active:translate-y-0.5 transition-all" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold tracking-wider uppercase">STATS</span>
+</a>
+</nav>
+</body></html>

@@ -62,7 +62,7 @@ export const UpcomingFixtures = ({ teamData }) => {
     setDifficultyType(difficultyType === "easiest" ? "hardest" : "easiest");
   };
 
-  const { teams } = teamData;
+  const teams = teamData?.teams;
 
   if (loading || !teams) return <Loader />;
 
@@ -74,12 +74,12 @@ export const UpcomingFixtures = ({ teamData }) => {
 
   return (
     <StyledFixtures>
-      <Header>
-        <span>{titleDifficulty} Upcoming Fixtures (Next 5)</span>
+      <SectionHeader>
+        <span>{titleDifficulty} Fixtures (Next 5)</span>
         <Switch type="button" onClick={() => updateDifficultyType()}>
           {buttonText}
         </Switch>
-      </Header>
+      </SectionHeader>
       <Table>
         <tbody>
           {getFixturesByDifficulty(5, 5).map((teamInfo) => {
@@ -94,10 +94,9 @@ export const UpcomingFixtures = ({ teamData }) => {
                   return (
                     <Fixture key={`upcoming-fixtures-team-1-${fixture.team}`}>
                       <FixtureTeam>
-                        {getTeamShortName(teams, fixture.team)} ({fixture.venue}
-                        )
+                        {getTeamShortName(teams, fixture.team)} ({fixture.venue})
                       </FixtureTeam>
-                      <FixtureDifficulty>
+                      <FixtureDifficulty $diff={fixture.difficulty}>
                         {fixture.difficulty}
                       </FixtureDifficulty>
                     </Fixture>
@@ -109,12 +108,12 @@ export const UpcomingFixtures = ({ teamData }) => {
         </tbody>
       </Table>
 
-      <Header>
-        <span>{titleDifficulty} Upcoming Fixtures (Next 3)</span>
+      <SectionHeader>
+        <span>{titleDifficulty} Fixtures (Next 3)</span>
         <Switch type="button" onClick={() => updateDifficultyType()}>
           {buttonText}
         </Switch>
-      </Header>
+      </SectionHeader>
       <Table>
         <tbody>
           {getFixturesByDifficulty(3, 5).map((teamInfo) => {
@@ -129,10 +128,9 @@ export const UpcomingFixtures = ({ teamData }) => {
                   return (
                     <Fixture key={`upcoming-fixtures-team-2-${fixture.team}`}>
                       <FixtureTeam>
-                        {getTeamShortName(teams, fixture.team)} ({fixture.venue}
-                        )
+                        {getTeamShortName(teams, fixture.team)} ({fixture.venue})
                       </FixtureTeam>
-                      <FixtureDifficulty>
+                      <FixtureDifficulty $diff={fixture.difficulty}>
                         {fixture.difficulty}
                       </FixtureDifficulty>
                     </Fixture>
@@ -147,50 +145,71 @@ export const UpcomingFixtures = ({ teamData }) => {
   );
 };
 
+const diffColor = (d) => {
+  if (d <= 2) return "#00fd84";
+  if (d === 3) return "#acabaa";
+  return "#ff6e85";
+};
+
 const StyledLink = styled(Link)`
-  color: ${({ theme }) => theme.colours.greyDarkest};
+  color: ${({ theme }) => theme.colours.onSurface};
+  font-weight: 600;
+  font-size: ${({ theme }) => theme.font.size.small};
+
+  &:hover {
+    color: ${({ theme }) => theme.colours.primary};
+    text-decoration: none;
+  }
 `;
 
 const StyledFixtures = styled.div`
-  width: 100%;
-  margin-top: ${({ theme }) => theme.spacing};
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
-    width: 60%;
-    margin-top: 0;
-  } ;
+  flex: 3 1 0;
+  min-width: 0;
 `;
 
-const Header = styled.h3`
+const SectionHeader = styled.h3`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: ${({ theme }) => theme.spacingValue / 2}px;
   font-family: ${({ theme }) => theme.font.headerDefault};
-  letter-spacing: 1px;
+  font-style: italic;
+  font-size: ${({ theme }) => theme.font.size.lead};
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colours.onSurface};
+  letter-spacing: 0.05em;
 
-  :first-child {
+  &:first-child {
     margin-top: 0;
   }
 `;
 
 const Switch = styled.button`
-  font-size: ${({ theme }) => theme.font.size.body};
-  display: inline-block;
-  padding: ${({ theme }) => theme.spacingValue / 2}px
-    ${({ theme }) => theme.spacingValue}px;
-  background: ${({ theme }) => theme.colours.blueDark};
-  color: white;
-  border-radius: 3px;
+  font-size: ${({ theme }) => theme.font.size.xsmall};
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px ${({ theme }) => theme.spacing};
+  background: rgba(253, 180, 248, 0.12);
+  color: ${({ theme }) => theme.colours.primary};
+  border-radius: 6px;
   font-family: ${({ theme }) => theme.font.familyDefault};
   cursor: pointer;
   border: none;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: rgba(253, 180, 248, 0.22);
+  }
 `;
 
 const Table = styled.table`
-  background: ${({ theme }) => theme.colours.green};
+  background: ${({ theme }) => theme.colours.surfaceContainerLow};
   border-spacing: 0;
   width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: ${({ theme }) => theme.spacing};
 
   tr:last-child td {
     border-bottom: none;
@@ -198,38 +217,37 @@ const Table = styled.table`
 `;
 
 const Team = styled.td`
-  border-right: 2px solid ${({ theme }) => theme.colours.greyDarkest};
-  font-size: ${({ theme }) => theme.font.size.small};
-  border-bottom: 2px solid ${({ theme }) => theme.colours.greyDarkest};
+  font-size: ${({ theme }) => theme.font.size.xsmall};
   padding: ${({ theme }) => theme.spacingValue / 2}px;
+  background: ${({ theme }) => theme.colours.surfaceContainerHigh};
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 
   @media (min-width: ${({ theme }) => theme.breakpoints.large}) {
-    font-size: 16px;
-  } ;
+    font-size: ${({ theme }) => theme.font.size.small};
+  }
 `;
 
 const Fixture = styled.td`
-  border-bottom: 2px solid ${({ theme }) => theme.colours.greyDarkest};
   padding: ${({ theme }) => theme.spacingValue / 2}px;
+  background: ${({ theme }) => theme.colours.surfaceContainer};
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 `;
 
 const FixtureTeam = styled.p`
   font-size: ${({ theme }) => theme.font.size.xsmall};
+  color: ${({ theme }) => theme.colours.onSurface};
   margin: 0;
   text-align: center;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.large}) {
     font-size: ${({ theme }) => theme.font.size.small};
-  } ;
+  }
 `;
 
 const FixtureDifficulty = styled.p`
   font-size: ${({ theme }) => theme.font.size.small};
   margin: 0;
   text-align: center;
-  font-weight: bold;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.large}) {
-    font-size: ${({ theme }) => theme.font.size.small};
-  } ;
+  font-weight: 700;
+  color: ${({ $diff }) => diffColor($diff)};
 `;

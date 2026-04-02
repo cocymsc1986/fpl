@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "outline": "#767575",
+              "inverse-surface": "#fbf9f8",
+              "inverse-primary": "#854984",
+              "on-primary-container": "#400743",
+              "surface": "#0e0e0e",
+              "on-tertiary-fixed": "#39000e",
+              "surface-container-low": "#131313",
+              "primary": "#fdb4f8",
+              "on-surface-variant": "#acabaa",
+              "tertiary-dim": "#e70051",
+              "secondary": "#00fd84",
+              "inverse-on-surface": "#555555",
+              "on-background": "#ffffff",
+              "on-tertiary-container": "#000000",
+              "secondary-container": "#006d35",
+              "on-tertiary": "#480014",
+              "surface-dim": "#0e0e0e",
+              "tertiary": "#ff6e85",
+              "primary-fixed": "#fdb4f8",
+              "secondary-fixed": "#00fd84",
+              "on-primary-fixed": "#501852",
+              "tertiary-fixed-dim": "#ff788c",
+              "on-secondary-container": "#e3ffe4",
+              "background": "#0e0e0e",
+              "primary-dim": "#eea6e9",
+              "surface-tint": "#fdb4f8",
+              "outline-variant": "#484848",
+              "error-container": "#a70138",
+              "secondary-fixed-dim": "#00ed7b",
+              "on-secondary-fixed-variant": "#006631",
+              "surface-bright": "#2c2c2c",
+              "on-primary-fixed-variant": "#713771",
+              "error-dim": "#d73357",
+              "on-secondary": "#005b2b",
+              "error": "#ff6e84",
+              "on-error-container": "#ffb2b9",
+              "secondary-dim": "#00ed7b",
+              "tertiary-container": "#fe215f",
+              "surface-container-highest": "#252626",
+              "on-primary": "#662d67",
+              "surface-container-lowest": "#000000",
+              "primary-container": "#ce89ca",
+              "on-surface": "#ffffff",
+              "surface-container-high": "#1f2020",
+              "surface-container": "#191a1a",
+              "primary-fixed-dim": "#eea6e9",
+              "on-tertiary-fixed-variant": "#780026",
+              "surface-variant": "#252626",
+              "on-secondary-fixed": "#004620",
+              "tertiary-fixed": "#ff909e",
+              "on-error": "#490013"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pitch-gradient {
+            background: radial-gradient(circle at top right, rgba(0, 253, 132, 0.05), transparent),
+                        radial-gradient(circle at bottom left, rgba(253, 180, 248, 0.05), transparent);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_20px_rgba(253,180,248,0.1)] flex items-center justify-between px-6 h-16">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#fdb4f8] active:scale-95 duration-200 cursor-pointer">menu</span>
+<h1 class="text-xl font-black italic text-[#fdb4f8] tracking-tighter font-headline uppercase">STADIUM PULSE</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-neutral-400 hover:text-[#fdb4f8] transition-colors cursor-pointer">search</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/30">
+<img class="w-full h-full object-cover" data-alt="close-up portrait of a young male sports enthusiast with a modern haircut in a dark studio setting with pink neon highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuasykCRj2Zn4-uBvNy3143IDEmQbPUDTnwE4oQtxHstZk0HVRL73T4dlTyNYUUQsW6edtVJjMQxeenCM3NYpH0uyPeJ1MyAdLRSaXRrC3oM4RZfrei3XSr8w_OkEt2-SZGj9Mb7IsPnHTE0eQyrCSfVPep2Dlba-kXcCcZCr2f1-bb3OrLJlJs4Fcyuqb0RghfmgRT_edJ5Mm6rWapeV_oZVD3oSFI4gf5ShZmnxk4jpWIEP92AhABIKtcCjSGPXJhfiIEJQd0ak"/>
+</div>
+</div>
+</header>
+<main class="pt-20 pb-28 px-4 pitch-gradient min-h-screen">
+<!-- Search & Filter Section -->
+<section class="mb-8">
+<div class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant group-focus-within:text-primary transition-colors">person_search</span>
+</div>
+<input class="w-full bg-surface-container-lowest border-0 rounded-xl py-4 pl-12 pr-4 text-on-surface focus:ring-2 focus:ring-primary font-body placeholder:text-neutral-600 transition-all shadow-inner" placeholder="Search for players..." type="text"/>
+</div>
+<!-- Horizontal Chips for Quick Filter -->
+<div class="flex gap-3 mt-6 overflow-x-auto pb-2 no-scrollbar">
+<button class="flex-none px-6 py-2 rounded-full bg-primary-container text-on-primary-container font-headline font-bold text-xs tracking-wider">ALL</button>
+<button class="flex-none px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-headline font-bold text-xs tracking-wider hover:bg-surface-bright transition-colors">GK</button>
+<button class="flex-none px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-headline font-bold text-xs tracking-wider hover:bg-surface-bright transition-colors">DEF</button>
+<button class="flex-none px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-headline font-bold text-xs tracking-wider hover:bg-surface-bright transition-colors">MID</button>
+<button class="flex-none px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-headline font-bold text-xs tracking-wider hover:bg-surface-bright transition-colors">FWD</button>
+<button class="flex-none px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant border border-outline-variant/20">
+<span class="material-symbols-outlined text-lg">tune</span>
+</button>
+</div>
+</section>
+<!-- Player List (Bento-inspired Grid) -->
+<div class="space-y-4">
+<!-- Player Card 1 (Premium / Active Focus) -->
+<div class="relative group overflow-hidden bg-surface-container-low rounded-2xl p-4 transition-all hover:bg-surface-container-high border border-primary/5">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="relative w-14 h-14">
+<div class="absolute inset-0 bg-primary/20 rounded-full blur-md group-hover:bg-primary/30 transition-all"></div>
+<img class="relative w-full h-full object-contain z-10" data-alt="professional soccer player headshot cutout with a sharp gaze against a neutral dark grey studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC07JXOLG9clLXuFUIocfgQBOgOuutx8RfUFaxXM29HIFpdCZwgMOjUEteGPdTFAIvvNpbbjDpMsxfXizn_xvUgsEGmVzwwGsJ1vOvxh_TKGzn3N4JwKpbyQzEQeatkNsFPjWS8r0R-aOcXNJOS5h0nPCfj1PVULOnLwoOzIrUJm-lndyEVtG5jFcQX80JQtjeixit_i6W0LBCLTH_H1YnGVF76MRlssAbwPL_Pc7B2Zm0Zor9sIAUMkP4OFWmbh5dh9KPXeI1F5jQ"/>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg leading-tight">SALAH</h3>
+<div class="flex items-center gap-2">
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-surface-bright text-secondary font-bold">LIV</span>
+<span class="text-[10px] text-on-surface-variant font-label tracking-widest uppercase">MIDFIELDER</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<p class="text-[10px] text-on-surface-variant font-label tracking-tighter uppercase">Price</p>
+<p class="font-headline font-black text-xl text-primary">£12.6m</p>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2 py-3 border-t border-outline-variant/10">
+<div class="text-center bg-surface-container-lowest/50 rounded-lg p-2">
+<p class="text-[9px] text-on-surface-variant font-label uppercase">Points</p>
+<p class="font-headline font-bold text-base">184</p>
+</div>
+<div class="text-center bg-surface-container-lowest/50 rounded-lg p-2">
+<p class="text-[9px] text-on-surface-variant font-label uppercase">Form</p>
+<p class="font-headline font-bold text-base text-secondary">8.4</p>
+</div>
+<div class="text-center bg-surface-container-lowest/50 rounded-lg p-2">
+<p class="text-[9px] text-on-surface-variant font-label uppercase">FDR</p>
+<div class="flex justify-center mt-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="ml-1 font-headline font-bold text-xs">2</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-3 py-2 bg-primary-container/10 hover:bg-primary/20 text-primary font-headline font-bold text-xs rounded-lg transition-all active:scale-95 uppercase tracking-widest">Add to Squad</button>
+</div>
+<!-- Player Card 2 -->
+<div class="relative group bg-surface-container-low rounded-2xl p-4 transition-all hover:bg-surface-container-high border border-white/5">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="relative w-14 h-14">
+<img class="relative w-full h-full object-contain rounded-full border border-outline-variant/20" data-alt="close-up of a soccer player wearing a blue team jersey in action on the field with stadium lights background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlO89xU3gIej9VN5PX0NRntkolkMLNUKj1uZ8k2BQ1ZLHnpZ5VWo22oyzONSRmHkfBvRYH5FPC9MAqB4LZqwBNOlqs_eNsuDqxNtbsoqX4p1hhgBjAb_8haZUj1fI1czt_FJpk1Ri3NF7Tif1wkBlZZmrSI52Qb3FAMM5jSQxanU0qzAcegkZmmsh5TH02Fo0F_vQPeCnP3Ud_IS2AOoQ1Bt0-S5MHBibUKIBJF-sRrEHQYRd_FhS8JEfymm8Fc5t1KHgEtxi3N44"/>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg leading-tight">PALMER</h3>
+<div class="flex items-center gap-2">
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-surface-bright text-primary font-bold">CHE</span>
+<span class="text-[10px] text-on-surface-variant font-label tracking-widest uppercase">MIDFIELDER</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<p class="text-[10px] text-on-surface-variant font-label tracking-tighter uppercase">Price</p>
+<p class="font-headline font-black text-xl text-primary">£10.8m</p>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2 py-3 border-t border-outline-variant/10">
+<div class="text-center bg-surface-container-lowest/50 rounded-lg p-2">
+<p class="text-[9px] text-on-surface-variant font-label uppercase">Points</p>
+<p class="font-headline font-bold text-base">142</p>
+</div>
+<div class="text-center bg-surface-container-lowest/50 rounded-lg p-2">
+<p class="text-[9px] text-on-surface-variant font-label uppercase">Form</p>
+<p class="font-headline font-bold text-base text-secondary">6.1</p>
+</div>
+<div class="text-center bg-surface-container-lowest/50 rounded-lg p-2">
+<p class="text-[9px] text-on-surface-variant font-label uppercase">FDR</p>
+<div class="flex justify-center mt-1">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="ml-1 font-headline font-bold text-xs">4</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-3 py-2 bg-primary-container/10 hover:bg-primary/20 text-primary font-headline font-bold text-xs rounded-lg transition-all active:scale-95 uppercase tracking-widest">Add to Squad</button>
+</div>
+<!-- Player Card 3 -->
+<div class="relative group bg-surface-container-low rounded-2xl p-4 transition-all hover:bg-surface-container-high border border-white/5">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="relative w-14 h-14">
+<img class="relative w-full h-full object-contain rounded-full border border-outline-variant/20" data-alt="professional athlete training on grass pitch with soft morning sunlight illuminating the scene" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-olW5Pj5YHB3DoHACEwDUxJe_yYXzjrX3S3ctj77gXM7rloKmefFYW7G_VbcUuufUzfupMwkgIP0mOt7BHxC1fnpKdWFpDOSGTy6kEN1EcbmQnJk8gG3dVLurNHiz3rIr8jxcehI7cbhoDGy4NyuNLl60EpRHAklU28pY76MqqXrlkHx2gB5nS7qrGCKaA_UEcaI_BCaUOcMpABRDFTH_71PZ8j7SLAv0I-X403lBh_SYod7PjZd4ZnFEfZ2uNKSrvWd30HGTAtQ"/>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg leading-tight">WATKINS</h3>
+<div class="flex items-center gap-2">
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-surface-bright text-tertiary font-bold">AVL</span>
+<span class="text-[10px] text-on-surface-variant font-label tracking-widest uppercase">FORWARD</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<p class="text-[10px] text-on-surface-variant font-label tracking-tighter uppercase">Price</p>
+<p class="font-headline font-black text-xl text-primary">£9.1m</p>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2 py-3 border-t border-outline-variant/10">
+<div class="text-center bg-surface-container-lowest/50 rounded-lg p-2">
+<p class="text-[9px] text-on-surface-variant font-label uppercase">Points</p>
+<p class="font-headline font-bold text-base">158</p>
+</div>
+<div class="text-center bg-surface-container-lowest/50 rounded-lg p-2">
+<p class="text-[9px] text-on-surface-variant font-label uppercase">Form</p>
+<p class="font-headline font-bold text-base text-on-surface-variant">4.5</p>
+</div>
+<div class="text-center bg-surface-container-lowest/50 rounded-lg p-2">
+<p class="text-[9px] text-on-surface-variant font-label uppercase">FDR</p>
+<div class="flex justify-center mt-1">
+<span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+<span class="ml-1 font-headline font-bold text-xs">3</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-3 py-2 bg-primary-container/10 hover:bg-primary/20 text-primary font-headline font-bold text-xs rounded-lg transition-all active:scale-95 uppercase tracking-widest">Add to Squad</button>
+</div>
+<!-- Player Card 4 (Injury Status) -->
+<div class="relative group bg-surface-container-low/60 rounded-2xl p-4 transition-all border border-tertiary/20">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="relative w-14 h-14 grayscale">
+<img class="relative w-full h-full object-contain" data-alt="professional athlete profile cutout in black and white with dramatic shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAF-hrV14dYxHT4gOf8AD67QUvjOqkqL1WOs1VEsMv1kymDhDF9cnIDwdUguSODqWh1Rni4NZiI-NNfujJ_-TMeEUZXkEF3pqnBYiKRkyTTlOkqg_HKIGRx8QpWgYyIERY0SIMGnrpk1U0ssXnSDe1tV1GPUnulky7jMOJ8iUzZhYeLTrYGrlZp1HMv4YcyhggYhRCXCp8-WVm-UH7NWgqvG0jE8A1yNRKKWdSna1uz0uUzwwr7N3W0evm0ehr_ZnBfaA9CEp_y3A"/>
+<div class="absolute bottom-0 right-0 w-5 h-5 bg-tertiary rounded-full border-2 border-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-white font-bold">medical_services</span>
+</div>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg leading-tight opacity-50">ISAK</h3>
+<div class="flex items-center gap-2">
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-surface-bright text-neutral-400 font-bold">NEW</span>
+<span class="text-[10px] text-tertiary font-label tracking-tighter uppercase font-bold">75% Chance</span>
+</div>
+</div>
+</div>
+<div class="text-right opacity-50">
+<p class="text-[10px] text-on-surface-variant font-label tracking-tighter uppercase">Price</p>
+<p class="font-headline font-black text-xl">£8.4m</p>
+</div>
+</div>
+<div class="w-full bg-tertiary/5 p-2 rounded-lg text-center">
+<p class="text-[10px] text-tertiary font-bold uppercase tracking-widest">Groin Injury - Expected return Jan 14</p>
+</div>
+</div>
+</div>
+<!-- Pagination / Load More (Subtle) -->
+<div class="mt-8 text-center">
+<button class="text-on-surface-variant font-headline font-bold text-xs tracking-widest hover:text-primary transition-colors flex items-center justify-center gap-2 mx-auto">
+                LOAD MORE PLAYERS
+                <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-2 pb-6 bg-[#131313]/90 backdrop-blur-lg rounded-t-2xl shadow-[0_-4px_24px_rgba(0,0,0,0.8)] z-50">
+<div class="flex flex-col items-center justify-center text-neutral-500 px-4 py-1.5 active:translate-y-0.5 transition-all cursor-pointer">
+<span class="material-symbols-outlined">home</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold tracking-wider mt-1">HOME</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-[#fdb4f8]/10 text-[#fdb4f8] rounded-xl px-4 py-1.5 shadow-[0_0_15px_rgba(253,180,248,0.2)] active:translate-y-0.5 transition-all cursor-pointer">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold tracking-wider mt-1">PLAYERS</span>
+</div>
+<div class="flex flex-col items-center justify-center text-neutral-500 px-4 py-1.5 active:translate-y-0.5 transition-all cursor-pointer">
+<span class="material-symbols-outlined">shield</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold tracking-wider mt-1">TEAM</span>
+</div>
+<div class="flex flex-col items-center justify-center text-neutral-500 px-4 py-1.5 active:translate-y-0.5 transition-all cursor-pointer">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold tracking-wider mt-1">STATS</span>
+</div>
+</nav>
+<!-- Floating Action Button for Filters (Mobile Contextual) -->
+<div class="fixed bottom-24 right-6 z-40">
+<button class="w-14 h-14 bg-primary text-on-primary-container rounded-2xl shadow-[0_0_30px_rgba(253,180,248,0.4)] flex items-center justify-center active:scale-90 transition-all">
+<span class="material-symbols-outlined text-3xl font-bold">filter_alt</span>
+</button>
+</div>
+</body></html>

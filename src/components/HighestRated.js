@@ -33,16 +33,16 @@ export const HighestRated = ({ position, teams }) => {
   if (loading)
     return (
       <GridItem>
-        <Skeleton loading />
+        <Skeleton $loading />
       </GridItem>
     );
   if (error) return `Error loading highest rated ${position}s.`;
 
   const getTeamName = (id) => {
-    return teams.find((team) => team.id === id).short_name;
+    return teams.find((team) => team.id === id)?.short_name || "?";
   };
 
-  if (!data) return null; // fix eslint/consistent-returns
+  if (!data) return null;
 
   const {
     playersByPropAndPos: { players },
@@ -50,21 +50,23 @@ export const HighestRated = ({ position, teams }) => {
 
   return (
     <GridItem>
-      <Title>{position}s</Title>
+      <PositionTitle>{position}s</PositionTitle>
       <List>
         {players &&
           players.map((player) => {
             return (
               <ListItem key={player.id}>
-                <Name>
+                <NameCol>
                   <PlayerLink to={`/player/${player.id}`}>
                     {player.web_name}
                   </PlayerLink>
-                  <TeamLink to={`/team/${player.team}`}>
-                    {getTeamName(player.team)}
-                  </TeamLink>
-                </Name>
-                <Cost>{player.now_cost / 10}</Cost>
+                  <TeamChip>
+                    <TeamLink to={`/team/${player.team}`}>
+                      {getTeamName(player.team)}
+                    </TeamLink>
+                  </TeamChip>
+                </NameCol>
+                <Cost>£{player.now_cost / 10}m</Cost>
                 <Points>{player.total_points}</Points>
               </ListItem>
             );
@@ -76,33 +78,29 @@ export const HighestRated = ({ position, teams }) => {
 
 const Skeleton = styled.div`
   ${({ theme }) => theme.skeletonLoadingAnimation}
-  ${(props) =>
-    props.loading
-      ? "animation: skeleton-loading 1s linear infinite alternate"
-      : ""};
+  ${({ $loading }) =>
+    $loading ? "animation: skeleton-loading 1s linear infinite alternate;" : ""}
+  background: ${({ theme }) => theme.colours.surfaceContainer};
+  border-radius: 4px;
   min-height: 25rem;
-  margin-right: 1rem;
 `;
 
 const GridItem = styled.div`
-  width: 100%;
-  padding: ${({ theme }) => theme.spacingSmall} 0;
+  background: ${({ theme }) => theme.colours.surfaceContainer};
+  border-radius: 8px;
+  padding: ${({ theme }) => theme.spacing};
   box-sizing: border-box;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.small}) {
-    width: 50%;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
-    width: 25%;
-  } ;
 `;
 
-const Title = styled.h3`
+const PositionTitle = styled.h3`
   font-family: ${({ theme }) => theme.font.headerDefault};
-  letter-spacing: 1px;
+  font-style: italic;
+  font-weight: 700;
+  font-size: ${({ theme }) => theme.font.size.lead};
   text-transform: capitalize;
-  margin-top: 0;
+  color: ${({ theme }) => theme.colours.primary};
+  margin: 0 0 ${({ theme }) => theme.spacingSmall};
+  letter-spacing: 0.03em;
 `;
 
 const List = styled.ul`
@@ -113,37 +111,67 @@ const List = styled.ul`
 
 const ListItem = styled.li`
   display: flex;
-  margin-bottom: 4px;
+  align-items: center;
+  padding: 6px 4px;
+  border-radius: 4px;
+
+  &:nth-child(even) {
+    background: ${({ theme }) => theme.colours.surfaceContainerHigh};
+  }
 `;
 
-const Name = styled.div`
-  font-weight: bold;
+const NameCol = styled.div`
   width: 60%;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 `;
 
 const PlayerLink = styled(Link)`
   display: block;
   text-decoration: none;
-  color: ${({ theme }) => theme.colours.black};
+  color: ${({ theme }) => theme.colours.onSurface};
+  font-size: ${({ theme }) => theme.font.size.small};
+  font-weight: 600;
 
-  :hover {
-    text-decoration: underline;
+  &:hover {
+    color: ${({ theme }) => theme.colours.primary};
+    text-decoration: none;
   }
 `;
 
+const TeamChip = styled.span`
+  display: inline-block;
+`;
+
 const TeamLink = styled(Link)`
-  font-weight: normal;
-  font-size: ${({ theme }) => theme.font.size.small};
-  cursor: pointer;
+  font-size: ${({ theme }) => theme.font.size.xsmall};
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colours.onSurfaceVariant};
   text-decoration: none;
-  color: inherit;
+  background: ${({ theme }) => theme.colours.surfaceBright};
+  padding: 1px 5px;
+  border-radius: 3px;
+
+  &:hover {
+    color: ${({ theme }) => theme.colours.primary};
+    text-decoration: none;
+  }
 `;
 
 const Cost = styled.span`
   width: 20%;
+  font-size: ${({ theme }) => theme.font.size.xsmall};
+  color: ${({ theme }) => theme.colours.onSurfaceVariant};
+  text-align: right;
 `;
 
 const Points = styled.span`
   width: 20%;
+  font-size: ${({ theme }) => theme.font.size.small};
+  font-weight: 700;
+  color: ${({ theme }) => theme.colours.secondary};
+  text-align: right;
 `;

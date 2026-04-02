@@ -45,7 +45,7 @@ export const Fixtures = ({ teamData, gw }) => {
     });
   };
 
-  if (loading) return <Loader />;
+  if (loading && !data) return <Loader />;
   if (error) return `Error loading fixtures.`;
 
   const getKOTime = (date) => {
@@ -68,6 +68,7 @@ export const Fixtures = ({ teamData, gw }) => {
     );
   };
 
+  if (!teamData) return null;
   const {
     fixtures: { fixtures, id },
   } = data;
@@ -76,6 +77,7 @@ export const Fixtures = ({ teamData, gw }) => {
   return (
     <StyledFixtures>
       <Wrapper>
+        {loading && <LoadingOverlay><Loader /></LoadingOverlay>}
         <List>
           <Header>
             <tr>
@@ -134,86 +136,116 @@ export const Fixtures = ({ teamData, gw }) => {
 
 const KOTime = styled.div`
   font-size: ${({ theme }) => theme.font.size.xsmall};
+  color: ${({ theme }) => theme.colours.onSurfaceVariant};
 `;
 
 const StyledFixtures = styled.div`
-  width: 100%;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
-    width: 40%;
-  } ;
+  flex: 2 1 0;
+  min-width: 0;
 `;
 
 const Wrapper = styled.div`
-  @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
-    margin-right: ${({ theme }) => theme.spacing};
-  }
+  position: relative;
+`;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.large}) {
-    margin-right: ${({ theme }) => theme.spacingValue * 2}px;
-  } ;
+const LoadingOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: rgba(14, 14, 14, 0.7);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const List = styled.table`
-  background: ${({ theme }) => theme.colours.greyDarkest};
-  /* Specific width for height calc */
+  background: ${({ theme }) => theme.colours.surfaceContainerHigh};
   padding-bottom: ${({ theme }) => theme.spacing};
   margin: 0;
   list-style-type: none;
   width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
 `;
 
 const Header = styled.thead`
   text-align: center;
-  color: white;
+  background: ${({ theme }) => theme.colours.surfaceContainerHighest};
+  color: ${({ theme }) => theme.colours.onSurface};
   margin-top: 0;
 `;
 
 const H4 = styled.h4`
-  margin: 1rem 0;
+  font-family: ${({ theme }) => theme.font.headerDefault};
+  font-style: italic;
+  font-weight: 700;
+  font-size: ${({ theme }) => theme.font.size.lead};
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colours.primary};
+  margin: 0.75rem 0;
+  letter-spacing: 0.05em;
 `;
 
 const ListItem = styled.tr`
   height: 42px;
+
+  &:nth-child(even) {
+    background: ${({ theme }) => theme.colours.surfaceContainer};
+  }
 `;
 
 const Home = styled.td`
   padding: 4px;
   text-align: right;
-  margin-right: ${({ theme }) => theme.spacingSmall};
+  font-size: ${({ theme }) => theme.font.size.small};
 `;
 
 const StyledLink = styled(Link)`
-  color: white;
+  color: ${({ theme }) => theme.colours.onSurface};
+  font-weight: 600;
+
+  &:hover {
+    color: ${({ theme }) => theme.colours.primary};
+    text-decoration: none;
+  }
 `;
 
 const GameStatus = styled.td`
   padding: 0 4px 4px;
-  background: ${({ theme }) => theme.colours.greyDarkest};
-  color: white;
+  background: ${({ theme }) => theme.colours.surfaceContainerHighest};
+  color: ${({ theme }) => theme.colours.onSurface};
   text-align: center;
 `;
 
 const Score = styled.span`
-  font-size: 20px;
+  font-family: ${({ theme }) => theme.font.headerDefault};
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colours.secondary};
 `;
 
 const Away = styled.td`
-  margin-left: ${({ theme }) => theme.spacingSmall};
   padding: 4px;
+  font-size: ${({ theme }) => theme.font.size.small};
 `;
 
 const Button = styled.button`
-  background: ${({ theme }) => theme.colours.green};
-  color: ${({ theme }) => theme.colours.greyDarkest};
+  background: ${({ theme }) => theme.colours.surfaceContainerHighest};
+  color: ${({ theme }) => theme.colours.onSurface};
   padding: ${({ theme }) => theme.spacing};
-  font-size: ${({ theme }) => theme.font.size.body};
+  font-size: ${({ theme }) => theme.font.size.small};
+  font-family: ${({ theme }) => theme.font.familyDefault};
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   width: 50%;
   border: none;
   cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
 
-  :hover {
-    background: ${({ theme }) => theme.colours.greyDarkest};
-    color: white;
+  &:hover {
+    background: rgba(253, 180, 248, 0.15);
+    color: ${({ theme }) => theme.colours.primary};
   }
 `;

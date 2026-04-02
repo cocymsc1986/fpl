@@ -1,5 +1,5 @@
 import React from "react";
-import styled from 'styled-components/macro';
+import styled from "styled-components/macro";
 
 import { MostPopular } from "./MostPopular";
 
@@ -14,41 +14,50 @@ const mostPopularValues = [
 
 export const MostPopularContainer = () => {
   return (
-    <>
-      <Header>
-        <H2>This week&#39;s top performers</H2>
-      </Header>
-      <StyledPopular>
-        <Wrapper>
-          {mostPopularValues.map((value, i) => {
-            return <MostPopular key={value} block={i} stat={value} />;
-          })}
-        </Wrapper>
-      </StyledPopular>
-    </>
+    <Section>
+      <SectionHeader>
+        <SectionLabel>Top Performers</SectionLabel>
+      </SectionHeader>
+      <BentoGrid>
+        {mostPopularValues.map((value) => {
+          return <MostPopular key={value} stat={value} />;
+        })}
+      </BentoGrid>
+    </Section>
   );
 };
 
-const Header = styled.div`
+const Section = styled.section`
   max-width: ${({ theme }) => theme.maxWidth};
-  padding: ${({ theme }) => theme.spacing};
   margin: 0 auto;
+  padding: 0 ${({ theme }) => theme.spacing} ${({ theme }) => theme.spacing};
 `;
 
-const H2 = styled.h2`
-  margin: 0;
+const SectionHeader = styled.div`
+  margin-bottom: ${({ theme }) => theme.spacingSmall};
 `;
 
-const StyledPopular = styled.div`
-  max-width: ${({ theme }) => theme.maxWidth};
-  margin: 0 auto ${({ theme }) => theme.spacing};
+const SectionLabel = styled.h2`
+  font-family: ${({ theme }) => theme.font.headerDefault};
+  font-style: italic;
+  font-weight: 700;
+  font-size: ${({ theme }) => theme.font.size.subheader};
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colours.onSurface};
+  margin: ${({ theme }) => theme.spacing} 0 ${({ theme }) => theme.spacingSmall};
+  letter-spacing: 0.03em;
 `;
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-flow: wrap;
+const BentoGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.xlarge}) {
-    margin: 0 -8px;
-  };
+    grid-template-columns: repeat(6, 1fr);
+  }
 `;
